@@ -14,6 +14,12 @@
 		FD4D9E9E27F6ABAD00941EA5 /* ShopperscalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9E9D27F6ABAD00941EA5 /* ShopperscalcTests.swift */; };
 		FD4D9EA827F6ABAD00941EA5 /* ShopperscalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9EA727F6ABAD00941EA5 /* ShopperscalcUITests.swift */; };
 		FD4D9EAA27F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9EA927F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift */; };
+		FDED2B8027FCB8300049953C /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B7F27FCB8300049953C /* CalculatorView.swift */; };
+		FDED2B8227FCB84B0049953C /* CalculatorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B8127FCB84B0049953C /* CalculatorVM.swift */; };
+		FDED2B8427FCB89D0049953C /* NewTotalViewMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B8327FCB89D0049953C /* NewTotalViewMod.swift */; };
+		FDED2B8627FCB8AB0049953C /* SmallViewsMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B8527FCB8AB0049953C /* SmallViewsMod.swift */; };
+		FDED2B8827FCB8CD0049953C /* AccentIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B8727FCB8CD0049953C /* AccentIcons.swift */; };
+		FDED2B8A27FCB8DE0049953C /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B8927FCB8DE0049953C /* HideKeyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,12 @@
 		FD4D9EA327F6ABAD00941EA5 /* ShopperscalcUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopperscalcUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4D9EA727F6ABAD00941EA5 /* ShopperscalcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperscalcUITests.swift; sourceTree = "<group>"; };
 		FD4D9EA927F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperscalcUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FDED2B7F27FCB8300049953C /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
+		FDED2B8127FCB84B0049953C /* CalculatorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorVM.swift; sourceTree = "<group>"; };
+		FDED2B8327FCB89D0049953C /* NewTotalViewMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTotalViewMod.swift; sourceTree = "<group>"; };
+		FDED2B8527FCB8AB0049953C /* SmallViewsMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallViewsMod.swift; sourceTree = "<group>"; };
+		FDED2B8727FCB8CD0049953C /* AccentIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentIcons.swift; sourceTree = "<group>"; };
+		FDED2B8927FCB8DE0049953C /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +90,7 @@
 				FD4D9E9C27F6ABAD00941EA5 /* ShopperscalcTests */,
 				FD4D9EA627F6ABAD00941EA5 /* ShopperscalcUITests */,
 				FD4D9E8A27F6ABAC00941EA5 /* Products */,
+				FD8917182808A4A500498E4D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +109,10 @@
 			children = (
 				FD4D9E8C27F6ABAC00941EA5 /* ShopperscalcApp.swift */,
 				FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */,
+				FDED2B7F27FCB8300049953C /* CalculatorView.swift */,
+				FDED2B8127FCB84B0049953C /* CalculatorVM.swift */,
+				FD8917172808A00F00498E4D /* ViewModifiers */,
+				FDED2B8927FCB8DE0049953C /* HideKeyboard.swift */,
 				FD4D9E9027F6ABAD00941EA5 /* Assets.xcassets */,
 				FD4D9E9227F6ABAD00941EA5 /* Preview Content */,
 			);
@@ -125,6 +142,23 @@
 				FD4D9EA927F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift */,
 			);
 			path = ShopperscalcUITests;
+			sourceTree = "<group>";
+		};
+		FD8917172808A00F00498E4D /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				FDED2B8327FCB89D0049953C /* NewTotalViewMod.swift */,
+				FDED2B8527FCB8AB0049953C /* SmallViewsMod.swift */,
+				FDED2B8727FCB8CD0049953C /* AccentIcons.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		FD8917182808A4A500498E4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +291,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDED2B8A27FCB8DE0049953C /* HideKeyboard.swift in Sources */,
 				FD4D9E8F27F6ABAC00941EA5 /* ContentView.swift in Sources */,
+				FDED2B8427FCB89D0049953C /* NewTotalViewMod.swift in Sources */,
+				FDED2B8027FCB8300049953C /* CalculatorView.swift in Sources */,
+				FDED2B8827FCB8CD0049953C /* AccentIcons.swift in Sources */,
+				FDED2B8627FCB8AB0049953C /* SmallViewsMod.swift in Sources */,
+				FDED2B8227FCB84B0049953C /* CalculatorVM.swift in Sources */,
 				FD4D9E8D27F6ABAC00941EA5 /* ShopperscalcApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,7 +455,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Shopperscalc/Preview Content\"";
 				DEVELOPMENT_TEAM = 6BTL57MS6F;
 				ENABLE_PREVIEWS = YES;
@@ -423,18 +463,19 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = alexdiaz.Shopperscalc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -444,7 +485,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Shopperscalc/Preview Content\"";
 				DEVELOPMENT_TEAM = 6BTL57MS6F;
 				ENABLE_PREVIEWS = YES;
@@ -452,18 +493,19 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = alexdiaz.Shopperscalc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

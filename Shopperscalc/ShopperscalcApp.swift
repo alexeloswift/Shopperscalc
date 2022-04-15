@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct ShopperscalcApp: App {
+    @StateObject var viewmodel: CalculatorVM
+    
+    init() {
+        self._viewmodel = StateObject(wrappedValue: CalculatorVM())
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewmodel)
         }
     }
 }
