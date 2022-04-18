@@ -26,15 +26,6 @@ struct CalculatorView: View {
                                     .padding(1)
                                 
                             }
-                            
-//                            Divider().frame(width: 200)
-                            
-//                            VStack {
-//                                Text("Taxes")
-//
-//                                Text("\(viewmodel.taxesAmountAfterDiscount, specifier: "%. 2f")")
-//                                    .padding(1)
-//                            }
                         }
                         .modifier(NewTotalViewMod())
                         .padding()
@@ -86,7 +77,7 @@ struct CalculatorView: View {
                             .padding(.bottom, 100)
                     }
                 }
-                .navigationTitle("ShoppingCalc")
+                .navigationTitle("Shopperscalc")
                 .padding(.top, 50)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
