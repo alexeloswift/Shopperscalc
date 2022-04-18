@@ -11,8 +11,9 @@ class CalculatorVM: ObservableObject {
     
 //    Input
     @Published var discountPercentage: Int = 20
-    @Published var price: String = "0.00"
+    @Published var price: String = ""
     @Published var taxPercentage: Double = 0.07
+
     
 //    Output
     @Published var priceAfterDiscountWithTax: Double = 0.0
@@ -69,7 +70,4 @@ class CalculatorVM: ObservableObject {
         priceAfterDiscountWithTax = 0.0
         taxesAmountAfterDiscount = 0.0
     }
-    
-   
-    
 }

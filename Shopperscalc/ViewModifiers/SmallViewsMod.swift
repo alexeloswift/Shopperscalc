@@ -12,7 +12,7 @@ struct SmallViewsMod: ViewModifier {
         content
             .font(.system(.body, design: .monospaced))
             .foregroundColor(.primary)
-            .frame(width: 150, height: 80, alignment: .center)
+            .frame(width: 150, height: 120, alignment: .center)
             .overlay(
                 RoundedRectangle(cornerRadius: 17)
                     .stroke(Color(UIColor.systemYellow), lineWidth: 3))

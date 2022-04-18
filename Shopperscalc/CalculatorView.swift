@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct CalculatorView: View {
-      
-        let discountPercentages = 0..<101
+    
+    let discountPercentages = 1..<101
+    
+    @EnvironmentObject private var viewmodel: CalculatorVM
+    
+    
+    var body: some View {
         
-        @EnvironmentObject private var viewmodel: CalculatorVM
-        
-        var body: some View {
-            
-            NavigationView {
-                GeometryReader { geo in
+        NavigationView {
+            GeometryReader { geo in
+                ScrollView {
                     VStack {
                         VStack {
                             VStack {
                                 Text("New Total")
-                                Text ("\(viewmodel.priceAfterDiscount, specifier: "%. 2f")")
+                                Text("$\(viewmodel.priceAfterDiscount, specifier: "%. 2f")")
                                     .accessibilityLabel("Full Price")
                                     .padding(1)
                                 
@@ -31,21 +33,38 @@ struct CalculatorView: View {
                         .padding()
                         
                         HStack {
-                            Picker("Discount Percentage", selection: $viewmodel.discountPercentage) {
-                                ForEach(discountPercentages, id: \.self) {
-                                    Text("\($0)")
-                                }}
+                            VStack {
+                                Text("Discount")
+                                
+                                Divider()
+                                    .frame(width: 100)
+                                
+                                Picker("Discount Percentage", selection: $viewmodel.discountPercentage) {
+                                    ForEach(discountPercentages, id: \.self) {
+                                        Text("\($0) %")
+                                        
+                                    }}
+                            }
                             .modifier(SmallViewsMod())
                             
-                            
-                            TextField(viewmodel.price, text: $viewmodel.price)
-                                .keyboardType(.decimalPad)
-                                .accessibilityLabel("Full Price")
-                                .multilineTextAlignment(.center)
-                                .modifier(SmallViewsMod())
-                                .onTapGesture {
-                                    viewmodel.reset()
-                                }
+                            VStack {
+                                Text("Full Price")
+                                
+                                Divider()
+                                    .frame(width: 100)
+                                
+                                TextField(viewmodel.price, text: $viewmodel.price)
+                                    .modifier(PlaceholderStyle(showPlaceHolder: viewmodel.price.isEmpty, placeholder: "$0.00"))
+                                    .keyboardType(.decimalPad)
+                                    .accessibilityLabel("Full Price")
+                                    .multilineTextAlignment(.center)
+                                    .onTapGesture {
+                                        viewmodel.reset()
+                                    }
+                                
+                            }
+                            .padding(.bottom, 5)
+                            .modifier(SmallViewsMod())
                         }
                         .frame(width: geo.size.width, height: 100, alignment: .center)
                         
@@ -62,6 +81,7 @@ struct CalculatorView: View {
                                 .overlay(
                                     Capsule()
                                         .stroke(Color(UIColor.systemYellow).opacity(0.7), lineWidth: 3))
+                            
                             Button("calculate", action: viewmodel.presentCalculation)
                                 .font(.system(.body, design: .monospaced))
                                 .font(.title3)
@@ -77,29 +97,28 @@ struct CalculatorView: View {
                             .padding(.bottom, 100)
                     }
                 }
-                .navigationTitle("Shopperscalc")
-                .padding(.top, 50)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        
-                        Button(action: {
-                            hideKeyboard()
-                        }, label: {
-                            Image(systemName: "keyboard.chevron.compact.down").modifier(AccentIcons())})
-                        
-                    }
+            }
+            .navigationTitle("Shopperscalc")
+            .padding(.top, 50)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    Button(action: {
+                        hideKeyboard()
+                    }, label: {
+                        Image(systemName: "keyboard.chevron.compact.down").modifier(AccentIcons())})
                 }
             }
         }
     }
+}
 
 
 
-    struct CalculatorView_Previews: PreviewProvider {
-        static var previews: some View {
-            CalculatorView()
-                .preferredColorScheme(.dark)
-                .environmentObject(CalculatorVM())
-        }
+struct CalculatorView_Previews: PreviewProvider {
+    static var previews: some View {
+        CalculatorView()
+            .preferredColorScheme(.dark)
+            .environmentObject(CalculatorVM())
     }
+}

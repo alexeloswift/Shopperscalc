@@ -10,7 +10,7 @@ import SwiftUI
 struct NewTotalViewMod: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.system(.body, design: .monospaced))
+            .font(.system(.title, design: .monospaced))
             .foregroundColor(.primary)
             .frame(width: 300, height: 160, alignment: .center)
             .overlay(
