@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct ShopperscalcApp: App {
+    
     @StateObject var viewmodel: CalculatorVM
     
     init() {

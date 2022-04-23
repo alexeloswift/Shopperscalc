@@ -13,6 +13,8 @@ struct CalculatorView: View {
     
     @EnvironmentObject private var viewmodel: CalculatorVM
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+
     
     var body: some View {
         
@@ -82,15 +84,23 @@ struct CalculatorView: View {
                                     Capsule()
                                         .stroke(Color(UIColor.systemYellow).opacity(0.7), lineWidth: 3))
                             
-                            Button("calculate", action: viewmodel.presentCalculation)
-                                .font(.system(.body, design: .monospaced))
-                                .font(.title3)
-                                .padding(3)
-                                .foregroundColor(.primary)
-                                .padding(10)
-                                .overlay(
-                                    Capsule()
-                                        .stroke(Color(UIColor.systemYellow).opacity(0.7), lineWidth: 3))
+                            Button("calculate") {
+                                viewmodel.presentCalculation()
+                                addCalculation(fullPrice: viewmodel.price, newTotal: viewmodel.priceAfterDiscount, discountPercentage: Int16(Int(viewmodel.discountPercentage)))
+                            }
+                            .font(.system(.body, design: .monospaced))
+                            .font(.title3)
+                            .padding(3)
+                            .foregroundColor(.primary)
+                            .padding(10)
+                            .overlay(
+                                Capsule()
+                                    .stroke(Color(UIColor.systemYellow).opacity(0.7), lineWidth: 3))
+
+                            
+                            
+                            
+//                            Button("calculate", action: viewmodel.presentCalculation)
                             
                         }
                         Spacer()
@@ -111,6 +121,27 @@ struct CalculatorView: View {
             }
         }
     }
+    
+    func addCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+      // 1
+      let newCalculation = Calculation(context: managedObjectContext)
+
+      // 2
+        newCalculation.newTotal = newTotal
+        newCalculation.fullPrice = fullPrice
+        newCalculation.discountPercentage = discountPercentage
+
+      // 3
+      saveContext()
+    }
+    
+    func saveContext() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
+        }
+    }
 }
 
 
@@ -118,7 +149,7 @@ struct CalculatorView: View {
 struct CalculatorView_Previews: PreviewProvider {
     static var previews: some View {
         CalculatorView()
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
             .environmentObject(CalculatorVM())
     }
 }

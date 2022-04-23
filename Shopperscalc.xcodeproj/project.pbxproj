@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD4372EA28138FD900B7D10D /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4372E928138FD900B7D10D /* HistoryView.swift */; };
+		FD4372ED2813920E00B7D10D /* Calculations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD4372EB2813920E00B7D10D /* Calculations.xcdatamodeld */; };
+		FD4372EF2813943B00B7D10D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4372EE2813943B00B7D10D /* Persistence.swift */; };
 		FD4D9E8D27F6ABAC00941EA5 /* ShopperscalcApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9E8C27F6ABAC00941EA5 /* ShopperscalcApp.swift */; };
 		FD4D9E8F27F6ABAC00941EA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */; };
 		FD4D9E9127F6ABAD00941EA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD4D9E9027F6ABAD00941EA5 /* Assets.xcassets */; };
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD4372E928138FD900B7D10D /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		FD4372EC2813920E00B7D10D /* Calculations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Calculations.xcdatamodel; sourceTree = "<group>"; };
+		FD4372EE2813943B00B7D10D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		FD4D9E8927F6ABAC00941EA5 /* Shopperscalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopperscalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4D9E8C27F6ABAC00941EA5 /* ShopperscalcApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperscalcApp.swift; sourceTree = "<group>"; };
 		FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +118,9 @@
 				FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */,
 				FDED2B7F27FCB8300049953C /* CalculatorView.swift */,
 				FDED2B8127FCB84B0049953C /* CalculatorVM.swift */,
+				FD4372EE2813943B00B7D10D /* Persistence.swift */,
+				FD4372EB2813920E00B7D10D /* Calculations.xcdatamodeld */,
+				FD4372E928138FD900B7D10D /* HistoryView.swift */,
 				FD8917172808A00F00498E4D /* ViewModifiers */,
 				FDED2B8927FCB8DE0049953C /* HideKeyboard.swift */,
 				FD4D9E9027F6ABAD00941EA5 /* Assets.xcassets */,
@@ -290,9 +299,12 @@
 				FD4D9E8F27F6ABAC00941EA5 /* ContentView.swift in Sources */,
 				FDED2B8427FCB89D0049953C /* NewTotalViewMod.swift in Sources */,
 				FDED2B8027FCB8300049953C /* CalculatorView.swift in Sources */,
+				FD4372ED2813920E00B7D10D /* Calculations.xcdatamodeld in Sources */,
 				FDED2B8827FCB8CD0049953C /* AccentIcons.swift in Sources */,
 				FDED2B8627FCB8AB0049953C /* SmallViewsMod.swift in Sources */,
 				FDED2B8227FCB84B0049953C /* CalculatorVM.swift in Sources */,
+				FD4372EA28138FD900B7D10D /* HistoryView.swift in Sources */,
+				FD4372EF2813943B00B7D10D /* Persistence.swift in Sources */,
 				FD4D9E8D27F6ABAC00941EA5 /* ShopperscalcApp.swift in Sources */,
 				FDE90780280D2A1C00607262 /* Placeholder.swift in Sources */,
 			);
@@ -621,6 +633,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FD4372EB2813920E00B7D10D /* Calculations.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FD4372EC2813920E00B7D10D /* Calculations.xcdatamodel */,
+			);
+			currentVersion = FD4372EC2813920E00B7D10D /* Calculations.xcdatamodel */;
+			path = Calculations.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FD4D9E8127F6ABAC00941EA5 /* Project object */;
 }

@@ -9,10 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject private var viewmodel: CalculatorVM
+    let persistenceController = PersistenceController.shared
+
     
     var body: some View {
-        CalculatorView()
-            .environmentObject(viewmodel)
+        
+        TabView {
+            CalculatorView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+
+                .tabItem {
+                    Label("Calculator", systemImage: "list.dash")
+                }
+                
+            
+            
+            HistoryView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+
+                .tabItem {
+                    Label("History", systemImage: "square.and.pencil")
+                }
+            
+        }
+        .environmentObject(viewmodel)
+
     }
 }
 
