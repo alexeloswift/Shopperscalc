@@ -17,7 +17,6 @@ struct CalculationRow: View {
             VStack {
                 Text("Full Price")
                 Text(calculation.fullPrice ?? "$0.00")
-
             }
             
             Spacer()
@@ -32,7 +31,7 @@ struct CalculationRow: View {
             VStack {
                 Text("New Total")
                 Text("$\(calculation.newTotal, specifier: "%. 2f")")
-
+                
             }
             
         }
@@ -42,17 +41,14 @@ struct CalculationRow: View {
 struct HistoryView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
-    // 1.
+    
     @FetchRequest(
-        // 2.
         entity: Calculation.entity(),
-        // 3.
         sortDescriptors: [
             NSSortDescriptor(keyPath: \Calculation.fullPrice, ascending: true),
-        ]
-        //,predicate: NSPredicate(format: "genre contains 'Action'")
-        // 4.
-    ) var calculations: FetchedResults<Calculation>
+        ])
+    
+    var calculations: FetchedResults<Calculation>
     
     @State var isPresented = false
     
@@ -69,22 +65,12 @@ struct HistoryView: View {
     }
     
     func deleteCalculation(at offsets: IndexSet) {
-        // 1.
         offsets.forEach { index in
-            // 2.
             let calculation = self.calculations[index]
-            
-            // 3.
             self.managedObjectContext.delete(calculation)
         }
-        
-        // 4.
         saveContext()
     }
-    
-    
-
-    
     
     func saveContext() {
         do {

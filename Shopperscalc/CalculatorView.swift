@@ -14,7 +14,7 @@ struct CalculatorView: View {
     @EnvironmentObject private var viewmodel: CalculatorVM
     
     @Environment(\.managedObjectContext) var managedObjectContext
-
+    
     
     var body: some View {
         
@@ -96,12 +96,6 @@ struct CalculatorView: View {
                             .overlay(
                                 Capsule()
                                     .stroke(Color(UIColor.systemYellow).opacity(0.7), lineWidth: 3))
-
-                            
-                            
-                            
-//                            Button("calculate", action: viewmodel.presentCalculation)
-                            
                         }
                         Spacer()
                             .padding(.bottom, 100)
@@ -123,16 +117,16 @@ struct CalculatorView: View {
     }
     
     func addCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
-      // 1
-      let newCalculation = Calculation(context: managedObjectContext)
-
-      // 2
+        // 1
+        let newCalculation = Calculation(context: managedObjectContext)
+        
+        // 2
         newCalculation.newTotal = newTotal
         newCalculation.fullPrice = fullPrice
         newCalculation.discountPercentage = discountPercentage
-
-      // 3
-      saveContext()
+        
+        // 3
+        saveContext()
     }
     
     func saveContext() {

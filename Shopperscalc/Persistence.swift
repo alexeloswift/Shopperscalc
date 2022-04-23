@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct PersistenceController {
-    // A singleton for our entire app to use
+
     static let shared = PersistenceController()
     
     // Storage for Core Data
@@ -38,8 +38,6 @@ struct PersistenceController {
             }
         }
     }
-    
-    
     
     func save() {
         let context = container.viewContext
