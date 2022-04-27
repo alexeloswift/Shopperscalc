@@ -17,16 +17,14 @@ struct ContentView: View {
         
         TabView {
             CalculatorView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .tabItem {
                     Label("Calculator", systemImage: "list.dash")
                 }
             
             HistoryView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .tabItem {
                     Label("History", systemImage: "square.and.pencil")
-            }
+                }
         }
         .environmentObject(viewmodel)
     }

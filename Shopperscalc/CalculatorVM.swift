@@ -9,16 +9,16 @@ import Foundation
 
 class CalculatorVM: ObservableObject {
     
-//    Input
+    //    Input
     @Published var discountPercentage: Int = 20
     @Published var price: String = ""
     @Published var taxPercentage: Double = 0.07
     
-//    Output
+    //    Output
     @Published var priceAfterDiscountWithTax: Double = 0.0
     @Published var priceAfterDiscount: Double = 0.0
     @Published var taxesAmountAfterDiscount: Double = 0.0
-
+    
     
     func calculateNewTotal(price: String, discountPercentage: Int) -> Double {
         

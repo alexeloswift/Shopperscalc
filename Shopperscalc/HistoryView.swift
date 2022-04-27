@@ -6,37 +6,8 @@
 //
 
 import SwiftUI
+import CoreData
 
-struct CalculationRow: View {
-    
-    let calculation: Calculation
-    
-    var body: some View {
-        
-        HStack(alignment: .center) {
-            VStack {
-                Text("Full Price")
-                Text(calculation.fullPrice ?? "$0.00")
-            }
-            
-            Spacer()
-            
-            VStack {
-                Text("Discount")
-                Text("\(calculation.discountPercentage)%")
-            }
-            
-            Spacer()
-            
-            VStack {
-                Text("New Total")
-                Text("$\(calculation.newTotal, specifier: "%. 2f")")
-                
-            }
-            
-        }
-    }
-}
 
 struct HistoryView: View {
     
@@ -50,6 +21,8 @@ struct HistoryView: View {
     
     var calculations: FetchedResults<Calculation>
     
+    let persistentContainer = PersistenceController.shared
+    
     @State var isPresented = false
     
     var body: some View {
@@ -60,10 +33,47 @@ struct HistoryView: View {
                 }
                 .onDelete(perform: deleteCalculation)
             }
+            
             .navigationBarTitle(Text("History"))
+            .toolbar {
+                EditButton()
+                    .modifier(AccentIcons())
+            }
+            .navigationBarItems(trailing: Button(action: {
+                isPresented = true
+                //                TODO: Insert delete all code here
+                
+
+                
+                
+            }) {
+                Image(systemName: "trash")
+            }
+                .modifier(AccentIcons())
+                .alert("Would you like to delete all calculations?", isPresented: $isPresented) {
+                    Button("Yes", role: .destructive)  {
+                        deleteAll()
+                        
+                    }
+                }
+            )
         }
     }
     
+
+    func deleteAll() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Calculation.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        let persistentContainer = PersistenceController.shared.container
+
+        do {
+            try persistentContainer.viewContext.executeAndMergeChanges(using: deleteRequest)
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+
     func deleteCalculation(at offsets: IndexSet) {
         offsets.forEach { index in
             let calculation = self.calculations[index]
@@ -85,5 +95,6 @@ struct HistoryView: View {
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
         HistoryView()
+        
     }
 }

@@ -12,13 +12,17 @@ struct ShopperscalcApp: App {
     
     @StateObject var viewmodel: CalculatorVM
     
+    let persistenceController = PersistenceController.shared
+    
+    
     init() {
         self._viewmodel = StateObject(wrappedValue: CalculatorVM())
     }
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(viewmodel)
         }
     }

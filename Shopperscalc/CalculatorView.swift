@@ -20,7 +20,7 @@ struct CalculatorView: View {
         
         NavigationView {
             GeometryReader { geo in
-                ScrollView {
+                ScrollView(.vertical, showsIndicators: true) {
                     VStack {
                         VStack {
                             VStack {
@@ -117,15 +117,12 @@ struct CalculatorView: View {
     }
     
     func addCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
-        // 1
         let newCalculation = Calculation(context: managedObjectContext)
         
-        // 2
         newCalculation.newTotal = newTotal
         newCalculation.fullPrice = fullPrice
         newCalculation.discountPercentage = discountPercentage
         
-        // 3
         saveContext()
     }
     
