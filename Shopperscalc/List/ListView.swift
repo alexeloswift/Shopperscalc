@@ -8,6 +8,17 @@
 import SwiftUI
 
 struct ListView: View {
+    
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    @FetchRequest(
+        entity: ListName.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \ListName.listTitle, ascending: true)
+        ])
+    
+    var listName: FetchedResults<ListName>
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
