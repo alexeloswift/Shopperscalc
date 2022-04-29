@@ -8,33 +8,57 @@
 import SwiftUI
 
 struct AddToListView: View {
+    
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    @ObservedObject private var viewmodel = ListVM()
+    
+    @FetchRequest(
+        entity: ListName.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \ListName.listTitle, ascending: true)
+        ])
+    
+    var list: FetchedResults<ListName>
+    
+    
+    
+    
     var body: some View {
-        
-        List {
-            Text("dskn;")
-            Text("dskn;")
+        NavigationView {
+            Form {
+                Section(header: Text("")) {
+                    TextField("Name", text: $viewmodel.listName)
+                    
+                    
+                }
+                DisclosureGroup("Date") {
+                    DatePicker("", selection: $viewmodel.date)
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                }
+                
+                .navigationTitle("Add List")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                }
 
-            Text("dskn;")
-            Text("dskn;")
-            Text("dskn;")
-            Text("dskn;")
-
-        }
-        
-
-        .navigationTitle("Add calculation to list")
-        .toolbar {
-            Button("Create List") {
-
+                
             }
+
         }
-//        .navigationBarItems(trailing: Button(action: {
-//
-//        }) {
-//            Image(systemName: "trash")
-//        })
+        
+        
 
     }
+    
+    func saveContext() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
+        }
+    }
+
 }
 
 struct AddToListView_Previews: PreviewProvider {

@@ -37,7 +37,16 @@ struct HistoryView: View {
 
                 }
                 .onDelete(perform: deleteCalculation)
+                .listRowSeparator(.hidden)
+                .padding(10)
+                .cornerRadius(10)
+                .background(
+                    RoundedRectangle(cornerRadius: 10 , style: .continuous)
+                        .stroke(.yellow, lineWidth: 0.7)
+                .shadow(color: .yellow, radius: 0.7))
+
             }
+            
             .navigationBarTitle(Text("History"))
             .toolbar {
                 EditButton()

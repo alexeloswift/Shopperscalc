@@ -15,7 +15,8 @@ struct NewTotalViewMod: ViewModifier {
             .frame(width: 300, height: 160, alignment: .center)
             .overlay(
                 RoundedRectangle(cornerRadius: 17)
-                    .stroke(Color(UIColor.systemYellow), lineWidth: 3))
-                
-            }
-        }
+                    .stroke(Color.yellow, lineWidth: 3))
+        
+        
+    }
+}

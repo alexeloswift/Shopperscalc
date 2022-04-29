@@ -23,6 +23,9 @@
 		FD4D9EAA27F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9EA927F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift */; };
 		FD9C1CC0281BAE56003EA990 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9C1CBF281BAE56003EA990 /* ListView.swift */; };
 		FD9C1CC2281BB1C1003EA990 /* AddToListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */; };
+		FD9C1CC7281C6EF8003EA990 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9C1CC6281C6EF8003EA990 /* ListModel.swift */; };
+		FD9C1CC9281C7061003EA990 /* ListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9C1CC8281C7061003EA990 /* ListVM.swift */; };
+		FD9C1CCB281C7418003EA990 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9C1CCA281C7418003EA990 /* ListRow.swift */; };
 		FDED2B8027FCB8300049953C /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B7F27FCB8300049953C /* CalculatorView.swift */; };
 		FDED2B8227FCB84B0049953C /* CalculatorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B8127FCB84B0049953C /* CalculatorVM.swift */; };
 		FDED2B8427FCB89D0049953C /* NewTotalViewMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B8327FCB89D0049953C /* NewTotalViewMod.swift */; };
@@ -68,6 +71,9 @@
 		FD4D9EA927F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperscalcUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FD9C1CBF281BAE56003EA990 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToListView.swift; sourceTree = "<group>"; };
+		FD9C1CC6281C6EF8003EA990 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
+		FD9C1CC8281C7061003EA990 /* ListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVM.swift; sourceTree = "<group>"; };
+		FD9C1CCA281C7418003EA990 /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
 		FDED2B7F27FCB8300049953C /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		FDED2B8127FCB84B0049953C /* CalculatorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorVM.swift; sourceTree = "<group>"; };
 		FDED2B8327FCB89D0049953C /* NewTotalViewMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTotalViewMod.swift; sourceTree = "<group>"; };
@@ -197,8 +203,11 @@
 		FD9C1CC3281BB1D2003EA990 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				FD9C1CBF281BAE56003EA990 /* ListView.swift */,
 				FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */,
+				FD9C1CBF281BAE56003EA990 /* ListView.swift */,
+				FD9C1CC8281C7061003EA990 /* ListVM.swift */,
+				FD9C1CCA281C7418003EA990 /* ListRow.swift */,
+				FD9C1CC6281C6EF8003EA990 /* ListModel.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -362,9 +371,12 @@
 				FD4372ED2813920E00B7D10D /* Calculations.xcdatamodeld in Sources */,
 				FD11EB522819C6F500B486B1 /* MOC Ext.swift in Sources */,
 				FDED2B8827FCB8CD0049953C /* AccentIcons.swift in Sources */,
+				FD9C1CC7281C6EF8003EA990 /* ListModel.swift in Sources */,
 				FDED2B8627FCB8AB0049953C /* SmallViewsMod.swift in Sources */,
+				FD9C1CC9281C7061003EA990 /* ListVM.swift in Sources */,
 				FD11EB572819EB9200B486B1 /* PlaceholderMod.swift in Sources */,
 				FDED2B8227FCB84B0049953C /* CalculatorVM.swift in Sources */,
+				FD9C1CCB281C7418003EA990 /* ListRow.swift in Sources */,
 				FD4372EA28138FD900B7D10D /* HistoryView.swift in Sources */,
 				FD4372F12814580A00B7D10D /* PersistenceController.swift in Sources */,
 				FD4D9E8D27F6ABAC00941EA5 /* ShopperscalcApp.swift in Sources */,

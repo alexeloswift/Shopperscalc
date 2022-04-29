@@ -10,6 +10,6 @@ import SwiftUI
 struct AccentIcons: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .foregroundColor(Color(UIColor.systemYellow))
+            .foregroundColor(Color.yellow)
     }
 }

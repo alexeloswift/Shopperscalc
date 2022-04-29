@@ -117,6 +117,8 @@ struct CalculatorView: View {
                 viewmodel.isPresented = true
             }) {
                 Image(systemName: "plus.circle")
+                    .resizable()
+                    .frame(width: 30, height: 30)
                     .modifier(AccentIcons())
             })
             .sheet(isPresented: $viewmodel.isPresented) {

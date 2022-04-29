@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ListView: View {
     
@@ -19,9 +20,63 @@ struct ListView: View {
     
     var listName: FetchedResults<ListName>
     
+    @ObservedObject private var viewmodel = ListVM()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(viewmodel.lists.filter {
+                    self.viewmodel.searched.isEmpty ? true : $0.listName.localizedCapitalized.contains(self.viewmodel.searched)} ){ list in
+                        ListRow(list: list)
+                }
+                    .onDelete(perform: {
+                        viewmodel.removeList(at: $0)
+                    })
+            }
+            
+            
+                .navigationTitle("List")
+                .navigationBarItems(trailing: Button("add new list") {
+                    viewmodel.isPresented = true
+                })
+
+                .sheet(isPresented: $viewmodel.isPresented) {
+                    NavigationView {
+                        AddToListView()
+                    }
+                }
+        }
     }
+    
+    func deleteAll() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ListName.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        let persistentContainer = PersistenceController.shared.container
+        
+        do {
+            try persistentContainer.viewContext.executeAndMergeChanges(using: deleteRequest)
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func deleteCalculation(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let list = self.listName[index]
+            self.managedObjectContext.delete(list)
+        }
+        saveContext()
+    }
+    
+    func saveContext() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
+        }
+    }
+
 }
 
 struct ListView_Previews: PreviewProvider {
