@@ -15,15 +15,10 @@ struct CalculationRow: View {
         
         VStack(alignment: .center) {
             Text("New Total")
-            HStack {
-                Text("$")
-                Text("\(calculation.newTotal, specifier: "%. 2f")")
-            }
+                Text("$\(calculation.newTotal, specifier: "%. 2f")")
             .font(.title2)
             
-            
-            
-            HStack(alignment: .center, spacing: 5) {
+            HStack(alignment: .center) {
                 VStack {
                     Text("Discount")
                     Text("\(calculation.discountPercentage)%")
@@ -36,6 +31,7 @@ struct CalculationRow: View {
                     Text("Full Price")
                     HStack {
                         Text("$")
+                            .offset(x: 7)
                         Text(calculation.fullPrice ?? "$0.00")
                     }
                     .foregroundColor(Color.red)

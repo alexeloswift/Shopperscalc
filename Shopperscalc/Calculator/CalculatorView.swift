@@ -15,7 +15,6 @@ struct CalculatorView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    
     var body: some View {
         
         NavigationView {
@@ -56,7 +55,7 @@ struct CalculatorView: View {
                                     .frame(width: 100)
                                 
                                 TextField(viewmodel.price, text: $viewmodel.price)
-                                    .modifier(PlaceholderStyle(showPlaceHolder: viewmodel.price.isEmpty, placeholder: "$0.00"))
+                                    .modifier(PlaceholderMod(showPlaceHolder: viewmodel.price.isEmpty, placeholder: "$0.00"))
                                     .keyboardType(.decimalPad)
                                     .accessibilityLabel("Full Price")
                                     .multilineTextAlignment(.center)
@@ -86,7 +85,7 @@ struct CalculatorView: View {
                             
                             Button("calculate") {
                                 viewmodel.presentCalculation()
-                                addCalculation(fullPrice: viewmodel.price, newTotal: viewmodel.priceAfterDiscount, discountPercentage: Int16(Int(viewmodel.discountPercentage)))
+                                addCalculation(id: viewmodel.id, fullPrice: viewmodel.price, newTotal: viewmodel.priceAfterDiscount, discountPercentage: Int16(Int(viewmodel.discountPercentage)))
                             }
                             .font(.system(.body, design: .monospaced))
                             .font(.title3)
@@ -105,6 +104,7 @@ struct CalculatorView: View {
             .navigationTitle("Shopperscalc")
             .padding(.top, 50)
             .navigationBarTitleDisplayMode(.inline)
+
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
                     Button(action: {
@@ -113,12 +113,24 @@ struct CalculatorView: View {
                         Image(systemName: "keyboard.chevron.compact.down").modifier(AccentIcons())})
                 }
             }
+            .navigationBarItems(trailing: Button(action: {
+                viewmodel.isPresented = true
+            }) {
+                Image(systemName: "plus.circle")
+                    .modifier(AccentIcons())
+            })
+            .sheet(isPresented: $viewmodel.isPresented) {
+                NavigationView {
+                AddToListView()
+                }
+            }
         }
     }
     
-    func addCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+    func addCalculation(id: UUID, fullPrice: String, newTotal: Double, discountPercentage: Int16) {
         let newCalculation = Calculation(context: managedObjectContext)
         
+        newCalculation.id = id
         newCalculation.newTotal = newTotal
         newCalculation.fullPrice = fullPrice
         newCalculation.discountPercentage = discountPercentage

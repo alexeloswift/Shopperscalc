@@ -16,24 +16,28 @@ struct HistoryView: View {
     @FetchRequest(
         entity: Calculation.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \Calculation.fullPrice, ascending: true),
+            NSSortDescriptor(keyPath: \Calculation.fullPrice, ascending: true)
         ])
     
     var calculations: FetchedResults<Calculation>
     
-    let persistentContainer = PersistenceController.shared
     
     @State var isPresented = false
     
     var body: some View {
         NavigationView {
             List {
+                Text("This is where you will find the history of all of your calculations!")
+                    .font(.subheadline)
+                    .modifier(AccentIcons())
+                    .multilineTextAlignment(.center)
+                
                 ForEach(calculations, id: \.fullPrice) {
                     CalculationRow(calculation: $0)
+
                 }
                 .onDelete(perform: deleteCalculation)
             }
-            
             .navigationBarTitle(Text("History"))
             .toolbar {
                 EditButton()
@@ -41,16 +45,11 @@ struct HistoryView: View {
             }
             .navigationBarItems(trailing: Button(action: {
                 isPresented = true
-                //                TODO: Insert delete all code here
-                
-
-                
-                
             }) {
                 Image(systemName: "trash")
             }
                 .modifier(AccentIcons())
-                .alert("Would you like to delete all calculations?", isPresented: $isPresented) {
+                .alert("Delete All?", isPresented: $isPresented) {
                     Button("Yes", role: .destructive)  {
                         deleteAll()
                         
@@ -60,20 +59,20 @@ struct HistoryView: View {
         }
     }
     
-
+    
     func deleteAll() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Calculation.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
+        
         let persistentContainer = PersistenceController.shared.container
-
+        
         do {
             try persistentContainer.viewContext.executeAndMergeChanges(using: deleteRequest)
         } catch let error as NSError {
             print(error)
         }
     }
-
+    
     func deleteCalculation(at offsets: IndexSet) {
         offsets.forEach { index in
             let calculation = self.calculations[index]

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FD11EB502818F4EC00B486B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */; };
 		FD11EB522819C6F500B486B1 /* MOC Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11EB512819C6F500B486B1 /* MOC Ext.swift */; };
+		FD11EB572819EB9200B486B1 /* PlaceholderMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11EB562819EB9200B486B1 /* PlaceholderMod.swift */; };
 		FD4372EA28138FD900B7D10D /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4372E928138FD900B7D10D /* HistoryView.swift */; };
 		FD4372ED2813920E00B7D10D /* Calculations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD4372EB2813920E00B7D10D /* Calculations.xcdatamodeld */; };
 		FD4372F12814580A00B7D10D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4372F02814580A00B7D10D /* PersistenceController.swift */; };
@@ -20,7 +21,8 @@
 		FD4D9E9E27F6ABAD00941EA5 /* ShopperscalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9E9D27F6ABAD00941EA5 /* ShopperscalcTests.swift */; };
 		FD4D9EA827F6ABAD00941EA5 /* ShopperscalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9EA727F6ABAD00941EA5 /* ShopperscalcUITests.swift */; };
 		FD4D9EAA27F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9EA927F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift */; };
-		FDE90780280D2A1C00607262 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE9077F280D2A1C00607262 /* Placeholder.swift */; };
+		FD9C1CC0281BAE56003EA990 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9C1CBF281BAE56003EA990 /* ListView.swift */; };
+		FD9C1CC2281BB1C1003EA990 /* AddToListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */; };
 		FDED2B8027FCB8300049953C /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B7F27FCB8300049953C /* CalculatorView.swift */; };
 		FDED2B8227FCB84B0049953C /* CalculatorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B8127FCB84B0049953C /* CalculatorVM.swift */; };
 		FDED2B8427FCB89D0049953C /* NewTotalViewMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDED2B8327FCB89D0049953C /* NewTotalViewMod.swift */; };
@@ -49,6 +51,7 @@
 /* Begin PBXFileReference section */
 		FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD11EB512819C6F500B486B1 /* MOC Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MOC Ext.swift"; sourceTree = "<group>"; };
+		FD11EB562819EB9200B486B1 /* PlaceholderMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderMod.swift; sourceTree = "<group>"; };
 		FD4372E928138FD900B7D10D /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		FD4372EC2813920E00B7D10D /* Calculations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Calculations.xcdatamodel; sourceTree = "<group>"; };
 		FD4372F02814580A00B7D10D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -63,7 +66,8 @@
 		FD4D9EA327F6ABAD00941EA5 /* ShopperscalcUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopperscalcUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4D9EA727F6ABAD00941EA5 /* ShopperscalcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperscalcUITests.swift; sourceTree = "<group>"; };
 		FD4D9EA927F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperscalcUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FDE9077F280D2A1C00607262 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
+		FD9C1CBF281BAE56003EA990 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToListView.swift; sourceTree = "<group>"; };
 		FDED2B7F27FCB8300049953C /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		FDED2B8127FCB84B0049953C /* CalculatorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorVM.swift; sourceTree = "<group>"; };
 		FDED2B8327FCB89D0049953C /* NewTotalViewMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTotalViewMod.swift; sourceTree = "<group>"; };
@@ -100,7 +104,6 @@
 		FD11EB532819C9FA00B486B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FD11EB512819C6F500B486B1 /* MOC Ext.swift */,
 				FDED2B8927FCB8DE0049953C /* HideKeyboard.swift */,
 			);
 			name = Extensions;
@@ -112,6 +115,7 @@
 			children = (
 				FD4372F02814580A00B7D10D /* PersistenceController.swift */,
 				FD4372EB2813920E00B7D10D /* Calculations.xcdatamodeld */,
+				FD11EB512819C6F500B486B1 /* MOC Ext.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -142,10 +146,9 @@
 				FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */,
 				FD4D9E8C27F6ABAC00941EA5 /* ShopperscalcApp.swift */,
 				FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */,
-				FDED2B7F27FCB8300049953C /* CalculatorView.swift */,
-				FDED2B8127FCB84B0049953C /* CalculatorVM.swift */,
-				FD4372E928138FD900B7D10D /* HistoryView.swift */,
-				FD4372F428145C4800B7D10D /* CalculationRow.swift */,
+				FD9C1CC5281BB206003EA990 /* Calculator */,
+				FD9C1CC4281BB1ED003EA990 /* History */,
+				FD9C1CC3281BB1D2003EA990 /* List */,
 				FD4372F22814583300B7D10D /* Persistence */,
 				FD8917172808A00F00498E4D /* ViewModifiers */,
 				FD11EB532819C9FA00B486B1 /* Extensions */,
@@ -186,9 +189,36 @@
 				FDED2B8327FCB89D0049953C /* NewTotalViewMod.swift */,
 				FDED2B8527FCB8AB0049953C /* SmallViewsMod.swift */,
 				FDED2B8727FCB8CD0049953C /* AccentIcons.swift */,
-				FDE9077F280D2A1C00607262 /* Placeholder.swift */,
+				FD11EB562819EB9200B486B1 /* PlaceholderMod.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		FD9C1CC3281BB1D2003EA990 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				FD9C1CBF281BAE56003EA990 /* ListView.swift */,
+				FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		FD9C1CC4281BB1ED003EA990 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				FD4372E928138FD900B7D10D /* HistoryView.swift */,
+				FD4372F428145C4800B7D10D /* CalculationRow.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		FD9C1CC5281BB206003EA990 /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				FDED2B7F27FCB8300049953C /* CalculatorView.swift */,
+				FDED2B8127FCB84B0049953C /* CalculatorVM.swift */,
+			);
+			path = Calculator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,7 +353,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDED2B8A27FCB8DE0049953C /* HideKeyboard.swift in Sources */,
+				FD9C1CC2281BB1C1003EA990 /* AddToListView.swift in Sources */,
 				FD4D9E8F27F6ABAC00941EA5 /* ContentView.swift in Sources */,
+				FD9C1CC0281BAE56003EA990 /* ListView.swift in Sources */,
 				FD4372F528145C4800B7D10D /* CalculationRow.swift in Sources */,
 				FDED2B8427FCB89D0049953C /* NewTotalViewMod.swift in Sources */,
 				FDED2B8027FCB8300049953C /* CalculatorView.swift in Sources */,
@@ -331,11 +363,11 @@
 				FD11EB522819C6F500B486B1 /* MOC Ext.swift in Sources */,
 				FDED2B8827FCB8CD0049953C /* AccentIcons.swift in Sources */,
 				FDED2B8627FCB8AB0049953C /* SmallViewsMod.swift in Sources */,
+				FD11EB572819EB9200B486B1 /* PlaceholderMod.swift in Sources */,
 				FDED2B8227FCB84B0049953C /* CalculatorVM.swift in Sources */,
 				FD4372EA28138FD900B7D10D /* HistoryView.swift in Sources */,
 				FD4372F12814580A00B7D10D /* PersistenceController.swift in Sources */,
 				FD4D9E8D27F6ABAC00941EA5 /* ShopperscalcApp.swift in Sources */,
-				FDE90780280D2A1C00607262 /* Placeholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

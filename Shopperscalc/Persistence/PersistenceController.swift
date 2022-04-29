@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import UIKit
+//import UIKit
 import CoreData
 
 class PersistenceController {
@@ -38,10 +38,6 @@ class PersistenceController {
             }
         }
     }
-    
-    
-    
-    
     
     func save() {
         let context = container.viewContext

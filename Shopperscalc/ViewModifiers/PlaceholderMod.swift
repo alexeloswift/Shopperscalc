@@ -1,13 +1,13 @@
 //
-//  Placeholder.swift
+//  PlaceholderMod.swift
 //  Shopperscalc
 //
-//  Created by Alexis Diaz on 4/18/22.
+//  Created by Alexis Diaz on 4/27/22.
 //
 
 import SwiftUI
 
-struct PlaceholderStyle: ViewModifier {
+struct PlaceholderMod: ViewModifier {
     var showPlaceHolder: Bool
     var placeholder: String
 
@@ -16,8 +16,10 @@ struct PlaceholderStyle: ViewModifier {
             if showPlaceHolder {
                 Text(placeholder)
                     .opacity(0.5)
+                    .multilineTextAlignment(.center)
             }
             content
         }
     }
 }
+
