@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD023FA5281E5F1E00B36ED5 /* ModalListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */; };
 		FD11EB502818F4EC00B486B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */; };
 		FD11EB522819C6F500B486B1 /* MOC Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11EB512819C6F500B486B1 /* MOC Ext.swift */; };
 		FD11EB572819EB9200B486B1 /* PlaceholderMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11EB562819EB9200B486B1 /* PlaceholderMod.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalListRow.swift; sourceTree = "<group>"; };
 		FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD11EB512819C6F500B486B1 /* MOC Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MOC Ext.swift"; sourceTree = "<group>"; };
 		FD11EB562819EB9200B486B1 /* PlaceholderMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderMod.swift; sourceTree = "<group>"; };
@@ -111,6 +113,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD023FA3281E59E000B36ED5 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */,
+				FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */,
+				FD9C1CCC281CF684003EA990 /* ListCalculationsView.swift */,
+				FD9C1CCE281DE105003EA990 /* ListCalculationRow.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
 		FD11EB532819C9FA00B486B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,13 +220,11 @@
 		FD9C1CC3281BB1D2003EA990 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				FD9C1CCE281DE105003EA990 /* ListCalculationRow.swift */,
-				FD9C1CCC281CF684003EA990 /* ListCalculationsView.swift */,
-				FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */,
 				FD9C1CCA281C7418003EA990 /* ListRow.swift */,
 				FD9C1CBF281BAE56003EA990 /* ListView.swift */,
 				FD9C1CC8281C7061003EA990 /* ListVM.swift */,
 				FD9C1CC6281C6EF8003EA990 /* ListModel.swift */,
+				FD023FA3281E59E000B36ED5 /* Modal */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -387,6 +398,7 @@
 				FD9C1CCF281DE105003EA990 /* ListCalculationRow.swift in Sources */,
 				FD4372F12814580A00B7D10D /* PersistenceController.swift in Sources */,
 				FD9C1CCD281CF684003EA990 /* ListCalculationsView.swift in Sources */,
+				FD023FA5281E5F1E00B36ED5 /* ModalListRow.swift in Sources */,
 				FD4D9E8D27F6ABAC00941EA5 /* ShopperscalcApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

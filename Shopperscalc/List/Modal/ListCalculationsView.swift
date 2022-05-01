@@ -42,7 +42,7 @@ struct ListCalculationsView: View {
 
             }
             
-//            .navigationBarTitle(Text("History"))
+            .navigationBarHidden(true)
             .toolbar {
                 EditButton()
                     .modifier(AccentIcons())

@@ -116,6 +116,8 @@ struct CalculatorView: View {
             
             .navigationBarItems(trailing: Button(action: {
                 viewmodel.isPresented = true
+
+                addListCalculation(fullPrice: viewmodel.price, newTotal: viewmodel.priceAfterDiscount, discountPercentage: Int16(viewmodel.discountPercentage))
             }) {
                 Image(systemName: "plus.circle")
                     .resizable()
@@ -123,9 +125,8 @@ struct CalculatorView: View {
                     .modifier(AccentIcons())
             })
             .sheet(isPresented: $viewmodel.isPresented) {
-                NavigationView {
                 AddToListView()
-                }
+                
             }
         }
     }

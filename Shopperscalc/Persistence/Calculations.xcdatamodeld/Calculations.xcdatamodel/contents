@@ -20,7 +20,7 @@
     </entity>
     <elements>
         <element name="Calculation" positionX="-70.90625" positionY="-47.484375" width="128" height="89"/>
-        <element name="ListName" positionX="107.73046875" positionY="-47.92578125" width="128" height="88"/>
         <element name="ListCalculation" positionX="277.890625" positionY="-49.0625" width="128" height="118"/>
+        <element name="ListName" positionX="281.9140625" positionY="-273.97265625" width="128" height="88"/>
     </elements>
 </model>

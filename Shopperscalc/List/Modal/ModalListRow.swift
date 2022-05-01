@@ -1,29 +1,26 @@
 //
-//  ListRow.swift
+//  ModalListRow.swift
 //  Shopperscalc
 //
-//  Created by Alexis Diaz on 4/29/22.
+//  Created by Alexis Diaz on 5/1/22.
 //
 
 import SwiftUI
 
-struct ListRow: View {
+struct ModalListRow: View {
     
     var listName: ListName
     
     
     
     var body: some View {
-        VStack (alignment : .leading){
+        VStack (alignment : .leading) {
             HStack{
                 VStack(alignment:.leading) {
                     Text(listName.listTitle ?? "")
                         .font(.system(size: 20, weight: .bold))
-                        .background(
-                            
-                    NavigationLink("", destination: ListCalculationsView()).opacity(0))
-                }
-                
+                            }
+
                 Spacer()
                 
                 VStack (alignment:.leading){
@@ -43,7 +40,3 @@ struct ListRow: View {
     }
     
 }
-
-
-
-

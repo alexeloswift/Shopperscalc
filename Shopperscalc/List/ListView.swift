@@ -49,9 +49,8 @@ struct ListView: View {
                 })
 
                 .sheet(isPresented: $viewmodel.isPresented) {
-                    NavigationView {
                         AddToListView()
-                    }
+                    
                 }
         }
     }

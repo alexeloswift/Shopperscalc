@@ -28,48 +28,48 @@ struct AddToListView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("")) {
-                    TextField("Name", text: $viewmodel.listName)
-                    
-                    DisclosureGroup("Date") {
-                        DatePicker("", selection: $viewmodel.date)
-                            .datePickerStyle(GraphicalDatePickerStyle())
+            VStack {
+                
+                Form {
+                    Section(header: Text("Create New List")) {
+                        TextField("Name", text: $viewmodel.listName)
                     }
-                    Form {
                     List {
                         ForEach(listName, id: \.listTitle) {
-                            ListRow(listName: $0)
+                            ModalListRow(listName: $0)
                         }
-                        }
-                    }                    
-                    
-                    
-                }
-
-                
-                .navigationTitle("Add To List")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button("Cancel", role: .destructive) {
-                            presentationMode.wrappedValue.dismiss()
-                            
-                        }
-                        
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Save", role: .none) {
-                            
-                            addListName(listName: viewmodel.listName)
-                            
+                        .onTapGesture {
                             addListCalculation(fullPrice: calcViewmodel.price, newTotal: calcViewmodel.priceAfterDiscount, discountPercentage: Int16(calcViewmodel.discountPercentage))
-                            
-                            presentationMode.wrappedValue.dismiss()
-
-                            
                         }
+                    }
+                }
+                
+                DatePicker("", selection: $viewmodel.date)
+                    .hidden()
+                
+            }
+            .navigationTitle("Add To List")
+            .navigationBarTitleDisplayMode(.inline)
+            
+            
+            
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel", role: .destructive) {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Save", role: .none) {
+                        
+                        addListName(listName: viewmodel.listName)
+                        
+//                        addListCalculation(fullPrice: calcViewmodel.price, newTotal: calcViewmodel.priceAfterDiscount, discountPercentage: Int16(calcViewmodel.discountPercentage))
+                        
+                        presentationMode.wrappedValue.dismiss()
+                        
                     }
                 }
             }
@@ -99,7 +99,7 @@ struct AddToListView: View {
             print("Error saving managed object context: \(error)")
         }
     }
-
+    
 }
 
 struct AddToListView_Previews: PreviewProvider {
