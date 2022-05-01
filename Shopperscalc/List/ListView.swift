@@ -10,6 +10,7 @@ import CoreData
 
 struct ListView: View {
     
+    
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @FetchRequest(
@@ -22,21 +23,28 @@ struct ListView: View {
     
     @ObservedObject private var viewmodel = ListVM()
     
+    @FetchRequest(
+        entity: ListCalculation.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \ListCalculation.fullPrice, ascending: true)
+        ])
+    
+    var listCalculation: FetchedResults<ListCalculation>
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewmodel.lists.filter {
-                    self.viewmodel.searched.isEmpty ? true : $0.listName.localizedCapitalized.contains(self.viewmodel.searched)} ){ list in
-                        ListRow(list: list)
+                ForEach(listName, id: \.listTitle) {
+                    ListRow(listName: $0)
                 }
-                    .onDelete(perform: {
-                        viewmodel.removeList(at: $0)
-                    })
+
+                    .onDelete(perform: { deleteCalculation(at: $0) })
+                    .listRowSeparator(.hidden)
+
             }
-            
-            
+
                 .navigationTitle("List")
-                .navigationBarItems(trailing: Button("add new list") {
+                .navigationBarItems(trailing: Button("Add New List") {
                     viewmodel.isPresented = true
                 })
 
@@ -81,6 +89,8 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView()
+        NavigationView {
+            ListView()
+        }
     }
 }

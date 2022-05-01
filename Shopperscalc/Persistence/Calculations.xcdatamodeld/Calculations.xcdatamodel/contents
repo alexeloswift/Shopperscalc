@@ -6,11 +6,21 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="newTotal" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="ListCalculation" representedClassName="ListCalculation" syncable="YES" codeGenerationType="class">
+        <attribute name="discountPercentage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fullPrice" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="newTotal" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="listname" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListName" inverseName="listcalculation" inverseEntity="ListName"/>
+    </entity>
     <entity name="ListName" representedClassName="ListName" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="listTitle" optional="YES" attributeType="String"/>
+        <relationship name="listcalculation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ListCalculation" inverseName="listname" inverseEntity="ListCalculation"/>
     </entity>
     <elements>
-        <element name="Calculation" positionX="-63" positionY="-18" width="128" height="89"/>
-        <element name="ListName" positionX="-63" positionY="9" width="128" height="44"/>
+        <element name="Calculation" positionX="-70.90625" positionY="-47.484375" width="128" height="89"/>
+        <element name="ListName" positionX="107.73046875" positionY="-47.92578125" width="128" height="88"/>
+        <element name="ListCalculation" positionX="277.890625" positionY="-49.0625" width="128" height="118"/>
     </elements>
 </model>

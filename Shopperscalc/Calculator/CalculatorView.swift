@@ -113,6 +113,7 @@ struct CalculatorView: View {
                         Image(systemName: "keyboard.chevron.compact.down").modifier(AccentIcons())})
                 }
             }
+            
             .navigationBarItems(trailing: Button(action: {
                 viewmodel.isPresented = true
             }) {
@@ -127,6 +128,16 @@ struct CalculatorView: View {
                 }
             }
         }
+    }
+    
+    func addListCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+        let newListCalculation = ListCalculation(context: managedObjectContext)
+        
+        newListCalculation.newTotal = newTotal
+        newListCalculation.fullPrice = fullPrice
+        newListCalculation.discountPercentage = discountPercentage
+        
+        saveContext()
     }
     
     func addCalculation(id: UUID, fullPrice: String, newTotal: Double, discountPercentage: Int16) {

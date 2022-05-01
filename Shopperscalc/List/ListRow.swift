@@ -9,47 +9,44 @@ import SwiftUI
 
 struct ListRow: View {
     
-    var list: ListModel
+    var listName: ListName
+//    var listCalculation: ListCalculation
+    
+    
     
     var body: some View {
-        
         VStack (alignment : .leading){
-                    HStack{
-                        VStack(alignment:.leading) {
-//                            Text("Name:")
-//                                .font(.caption)
-//                                .foregroundColor(.secondary)
-                            Text(list.listName)
-                                .font(.system(size: 20, weight: .bold))
-                        }
-                        Spacer()
-                        VStack (alignment:.leading){
-                            Text("Date:")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Text(list.date , style: .date)
-                        }
-                    }
-//                    Text("Task:")
-//                        .font(.caption)
-//                        .foregroundColor(.secondary)
-//                    Text(task.taskName)
-//                        .font(.system(size: 15, weight: .bold))
-//                        .italic()
+            HStack{
+                VStack(alignment:.leading) {
+                    
+                    Text(listName.listTitle ?? "")
+                        .font(.system(size: 20, weight: .bold))
+                        .background(
+                    
+                            NavigationLink("", destination: ListCalculationsView()).opacity(0))
+                        
+
                 }
-                .padding(10)
-                .cornerRadius(10)
-                .background(
-                    RoundedRectangle(cornerRadius: 10 , style: .continuous)
-                        .stroke(.yellow, lineWidth: 0.7)
-                .shadow(color: .yellow, radius: 0.7))
+                
+                
+                Spacer()
+                
+                VStack (alignment:.leading){
+                    Text("Date:")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Text(listName.date ?? Date() , style: .date)
+                }
             }
         }
-                    
-
-
-struct ListRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ListRow(list: ListModel.init(listName: "Nike", date: Date()))
+        .padding(10)
+        .cornerRadius(10)
+        .background(
+            RoundedRectangle(cornerRadius: 10 , style: .continuous)
+                .stroke(.yellow, lineWidth: 0.7)
+                .shadow(color: .yellow, radius: 0.7))
     }
+    
 }
+
+
