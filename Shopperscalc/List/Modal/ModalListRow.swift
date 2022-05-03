@@ -11,8 +11,6 @@ struct ModalListRow: View {
     
     var listName: ListName
     
-    
-    
     var body: some View {
         VStack (alignment : .leading) {
             HStack{
@@ -27,7 +25,7 @@ struct ModalListRow: View {
                     Text("Date:")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    Text(listName.date ?? Date() , style: .date)
+                    Text(listName.date ?? Date(), style: .date)
                 }
             }
         }

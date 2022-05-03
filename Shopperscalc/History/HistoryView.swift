@@ -16,7 +16,7 @@ struct HistoryView: View {
     @FetchRequest(
         entity: Calculation.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \Calculation.fullPrice, ascending: true)
+            NSSortDescriptor(keyPath: \Calculation.id, ascending: true)
         ])
     
     var calculations: FetchedResults<Calculation>

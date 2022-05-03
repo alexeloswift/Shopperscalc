@@ -19,9 +19,7 @@ struct ListRow: View {
                 VStack(alignment:.leading) {
                     Text(listName.listTitle ?? "")
                         .font(.system(size: 20, weight: .bold))
-                        .background(
-                            
-                    NavigationLink("", destination: ListCalculationsView()).opacity(0))
+                        .background(NavigationLink("", destination: ListCalculationsView()).opacity(0))
                 }
                 
                 Spacer()

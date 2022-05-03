@@ -85,7 +85,12 @@ struct CalculatorView: View {
                             
                             Button("calculate") {
                                 viewmodel.presentCalculation()
-                                addCalculation(id: viewmodel.id, fullPrice: viewmodel.price, newTotal: viewmodel.priceAfterDiscount, discountPercentage: Int16(Int(viewmodel.discountPercentage)))
+                                
+                                !viewmodel.price.isEmpty ? addCalculation(
+                                    id: viewmodel.id,
+                                    fullPrice: viewmodel.price,
+                                    newTotal: viewmodel.priceAfterDiscount,
+                                    discountPercentage: Int16(viewmodel.discountPercentage)) : nil
                             }
                             .font(.system(.body, design: .monospaced))
                             .font(.title3)
@@ -116,8 +121,12 @@ struct CalculatorView: View {
             
             .navigationBarItems(trailing: Button(action: {
                 viewmodel.isPresented = true
-
-                addListCalculation(fullPrice: viewmodel.price, newTotal: viewmodel.priceAfterDiscount, discountPercentage: Int16(viewmodel.discountPercentage))
+                
+                !viewmodel.price.isEmpty ? addListCalculation(
+                    id: viewmodel.id,
+                    fullPrice: viewmodel.price,
+                    newTotal: viewmodel.priceAfterDiscount,
+                    discountPercentage: Int16(viewmodel.discountPercentage)) : nil
             }) {
                 Image(systemName: "plus.circle")
                     .resizable()
@@ -131,9 +140,10 @@ struct CalculatorView: View {
         }
     }
     
-    func addListCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+    func addListCalculation(id: UUID, fullPrice: String, newTotal: Double, discountPercentage: Int16) {
         let newListCalculation = ListCalculation(context: managedObjectContext)
         
+        newListCalculation.id = id
         newListCalculation.newTotal = newTotal
         newListCalculation.fullPrice = fullPrice
         newListCalculation.discountPercentage = discountPercentage

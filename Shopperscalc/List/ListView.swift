@@ -49,7 +49,7 @@ struct ListView: View {
                 })
 
                 .sheet(isPresented: $viewmodel.isPresented) {
-                        AddToListView()
+                        EmptyView()
                     
                 }
         }
