@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FD023FA5281E5F1E00B36ED5 /* ModalListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */; };
 		FD11EB502818F4EC00B486B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */; };
-		FD11EB522819C6F500B486B1 /* MOC Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11EB512819C6F500B486B1 /* MOC Ext.swift */; };
+		FD11EB522819C6F500B486B1 /* BatchDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11EB512819C6F500B486B1 /* BatchDelete.swift */; };
 		FD11EB572819EB9200B486B1 /* PlaceholderMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11EB562819EB9200B486B1 /* PlaceholderMod.swift */; };
 		FD4372EA28138FD900B7D10D /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4372E928138FD900B7D10D /* HistoryView.swift */; };
 		FD4372ED2813920E00B7D10D /* Calculations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD4372EB2813920E00B7D10D /* Calculations.xcdatamodeld */; };
@@ -57,7 +57,7 @@
 /* Begin PBXFileReference section */
 		FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalListRow.swift; sourceTree = "<group>"; };
 		FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FD11EB512819C6F500B486B1 /* MOC Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MOC Ext.swift"; sourceTree = "<group>"; };
+		FD11EB512819C6F500B486B1 /* BatchDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchDelete.swift; sourceTree = "<group>"; };
 		FD11EB562819EB9200B486B1 /* PlaceholderMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderMod.swift; sourceTree = "<group>"; };
 		FD4372E928138FD900B7D10D /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		FD4372EC2813920E00B7D10D /* Calculations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Calculations.xcdatamodel; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			children = (
 				FD4372F02814580A00B7D10D /* PersistenceController.swift */,
 				FD4372EB2813920E00B7D10D /* Calculations.xcdatamodeld */,
-				FD11EB512819C6F500B486B1 /* MOC Ext.swift */,
+				FD11EB512819C6F500B486B1 /* BatchDelete.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -386,7 +386,7 @@
 				FDED2B8427FCB89D0049953C /* NewTotalViewMod.swift in Sources */,
 				FDED2B8027FCB8300049953C /* CalculatorView.swift in Sources */,
 				FD4372ED2813920E00B7D10D /* Calculations.xcdatamodeld in Sources */,
-				FD11EB522819C6F500B486B1 /* MOC Ext.swift in Sources */,
+				FD11EB522819C6F500B486B1 /* BatchDelete.swift in Sources */,
 				FDED2B8827FCB8CD0049953C /* AccentIcons.swift in Sources */,
 				FD9C1CC7281C6EF8003EA990 /* ListModel.swift in Sources */,
 				FDED2B8627FCB8AB0049953C /* SmallViewsMod.swift in Sources */,
