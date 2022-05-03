@@ -15,12 +15,13 @@
     </entity>
     <entity name="ListName" representedClassName="ListName" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="listTitle" optional="YES" attributeType="String"/>
         <relationship name="listcalculation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ListCalculation" inverseName="listname" inverseEntity="ListCalculation"/>
     </entity>
     <elements>
         <element name="Calculation" positionX="-70.90625" positionY="-47.484375" width="128" height="89"/>
         <element name="ListCalculation" positionX="277.890625" positionY="-49.0625" width="128" height="118"/>
-        <element name="ListName" positionX="281.9140625" positionY="-273.97265625" width="128" height="88"/>
+        <element name="ListName" positionX="281.9140625" positionY="-273.97265625" width="128" height="89"/>
     </elements>
 </model>

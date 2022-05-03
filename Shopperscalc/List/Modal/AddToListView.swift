@@ -28,27 +28,33 @@ struct AddToListView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                
-                Form {
-                    Section(header: Text("Create New List")) {
-                        TextField("Name", text: $viewmodel.listName)
-                    }
-                    List {
-                        ForEach(listName, id: \.listTitle) {
-                            ModalListRow(listName: $0)
-                        }
+            //            VStack {
+            //
+            //                Form {
+            //                    Section(header: Text("Create New List")) {
+            //                        TextField("Name", text: $viewmodel.listName)
+            //                    }
+            List {
+                ForEach(listName, id: \.listTitle) {
+                    ModalListRow(listName: $0)
                         .onTapGesture {
-                            addListCalculation(fullPrice: calcViewmodel.price, newTotal: calcViewmodel.priceAfterDiscount, discountPercentage: Int16(calcViewmodel.discountPercentage))
-                        }
+                            
+                            addListCalculation(fullPrice: calcViewmodel.price,
+                                               newTotal: calcViewmodel.priceAfterDiscount,
+                                               discountPercentage: Int16(calcViewmodel.discountPercentage))
+                            
+                            presentationMode.wrappedValue.dismiss()
+                            
                     }
                 }
-                
-                DatePicker("", selection: $viewmodel.date)
-                    .hidden()
-                
             }
-            .navigationTitle("Add To List")
+            //                }
+            
+            //                DatePicker("", selection: $viewmodel.date)
+            //                    .hidden()
+            
+            //            }
+            .navigationTitle("Save To List")
             .navigationBarTitleDisplayMode(.inline)
             
             
@@ -66,7 +72,7 @@ struct AddToListView: View {
                         
                         addListName(listName: viewmodel.listName)
                         
-//                        addListCalculation(fullPrice: calcViewmodel.price, newTotal: calcViewmodel.priceAfterDiscount, discountPercentage: Int16(calcViewmodel.discountPercentage))
+                        //                        addListCalculation(fullPrice: calcViewmodel.price, newTotal: calcViewmodel.priceAfterDiscount, discountPercentage: Int16(calcViewmodel.discountPercentage))
                         
                         presentationMode.wrappedValue.dismiss()
                         
