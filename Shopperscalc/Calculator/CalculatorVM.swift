@@ -52,9 +52,9 @@ class CalculatorVM: ObservableObject {
         let amountOff = priceAsDouble / 100 * discountPercentageAsDouble
         let taxCalculated = (priceAsDouble - amountOff) * taxPercentage
         let priceCalculatedWithoutTax = priceAsDouble - amountOff
-        let newTotalWithTax = priceCalculatedWithoutTax + taxCalculated
+        let priceCalculatedWithTax = priceCalculatedWithoutTax + taxCalculated
         
-        return newTotalWithTax
+        return priceCalculatedWithTax
     }
     
     func presentCalculation() {
