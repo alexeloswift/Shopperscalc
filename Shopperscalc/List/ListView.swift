@@ -12,29 +12,34 @@ struct ListView: View {
     
     
     @Environment(\.managedObjectContext) var managedObjectContext
-    
-    @FetchRequest(
-        entity: ListName.entity(),
-        sortDescriptors: [
-            NSSortDescriptor(keyPath: \ListName.listTitle, ascending: true)
-        ])
-    
-    var listName: FetchedResults<ListName>
-    
     @ObservedObject private var viewmodel = ListVM()
+
     
-    @FetchRequest(
-        entity: ListCalculation.entity(),
-        sortDescriptors: [
-            NSSortDescriptor(keyPath: \ListCalculation.fullPrice, ascending: true)
-        ])
+//    @FetchRequest(
+//        entity: Lists.entity(),
+//        sortDescriptors: [
+//            NSSortDescriptor(keyPath: \Lists.listTitle, ascending: true)
+//        ])
+//
+//    var listName: FetchedResults<Lists>
     
-    var listCalculation: FetchedResults<ListCalculation>
+    @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
+    
+    
+//    @FetchRequest(
+//        entity: ListCalculation.entity(),
+//        sortDescriptors: [
+//            NSSortDescriptor(keyPath: \ListCalculation.fullPrice, ascending: true)
+//        ])
+//
+//    var listCalculation: FetchedResults<ListCalculation>
+
+
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(listName, id: \.listTitle) {
+                ForEach(listName, id: \.self) {
                     ListRow(listName: $0)
                 }
 
@@ -44,19 +49,19 @@ struct ListView: View {
             }
 
                 .navigationTitle("List")
-                .navigationBarItems(trailing: Button("Add New List") {
+                .navigationBarItems(trailing: Button("Create New List") {
                     viewmodel.isPresented = true
                 })
 
                 .sheet(isPresented: $viewmodel.isPresented) {
-                        EmptyView()
+                        CreateNewListView()
                     
                 }
         }
     }
     
     func deleteAll() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ListName.fetchRequest()
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ListCalculation.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         let persistentContainer = PersistenceController.shared.container
@@ -88,8 +93,6 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
             ListView()
-        }
     }
 }

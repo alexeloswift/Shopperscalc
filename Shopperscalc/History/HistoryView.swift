@@ -16,7 +16,7 @@ struct HistoryView: View {
     @FetchRequest(
         entity: Calculation.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \Calculation.id, ascending: true)
+            NSSortDescriptor(keyPath: \Calculation.fullPrice, ascending: true)
         ])
     
     var calculations: FetchedResults<Calculation>
@@ -27,7 +27,7 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             List {
-                Text("This is where you will find the history of all of your calculations!")
+                Text("This is the calculation history!")
                     .font(.subheadline)
                     .modifier(AccentIcons())
                     .multilineTextAlignment(.center)

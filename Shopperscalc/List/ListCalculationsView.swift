@@ -21,6 +21,9 @@ struct ListCalculationsView: View {
     
     var listCalculations: FetchedResults<ListCalculation>
     
+    @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
+
+    
     
     @State var isPresented = false
     

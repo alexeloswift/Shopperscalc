@@ -6,8 +6,28 @@
 	<dict>
 		<key>Shopperscalc.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>FD4D9E8827F6ABAC00941EA5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD4D9E9827F6ABAD00941EA5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD4D9EA227F6ABAD00941EA5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

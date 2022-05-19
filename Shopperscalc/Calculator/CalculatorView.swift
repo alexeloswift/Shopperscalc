@@ -87,7 +87,6 @@ struct CalculatorView: View {
                                 viewmodel.presentCalculation()
                                 
                                 !viewmodel.price.isEmpty ? addCalculation(
-                                    id: viewmodel.id,
                                     fullPrice: viewmodel.price,
                                     newTotal: viewmodel.priceAfterDiscount,
                                     discountPercentage: Int16(viewmodel.discountPercentage)) : nil
@@ -123,7 +122,6 @@ struct CalculatorView: View {
                 viewmodel.isPresented = true
                 
                 !viewmodel.price.isEmpty ? addListCalculation(
-                    id: viewmodel.id,
                     fullPrice: viewmodel.price,
                     newTotal: viewmodel.priceAfterDiscount,
                     discountPercentage: Int16(viewmodel.discountPercentage)) : nil
@@ -140,10 +138,9 @@ struct CalculatorView: View {
         }
     }
     
-    func addListCalculation(id: UUID, fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+    func addListCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
         let newListCalculation = ListCalculation(context: managedObjectContext)
         
-        newListCalculation.id = id
         newListCalculation.newTotal = newTotal
         newListCalculation.fullPrice = fullPrice
         newListCalculation.discountPercentage = discountPercentage
@@ -151,10 +148,9 @@ struct CalculatorView: View {
         saveContext()
     }
     
-    func addCalculation(id: UUID, fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+    func addCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
         let newCalculation = Calculation(context: managedObjectContext)
         
-        newCalculation.id = id
         newCalculation.newTotal = newTotal
         newCalculation.fullPrice = fullPrice
         newCalculation.discountPercentage = discountPercentage

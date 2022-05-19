@@ -13,7 +13,6 @@ class CalculatorVM: ObservableObject {
     @Published var discountPercentage: Int = 20
     @Published var price: String = ""
     @Published var taxPercentage: Double = 0.07
-    @Published var id = UUID()
     
     //    Output
     @Published var priceAfterDiscountWithTax: Double = 0.0

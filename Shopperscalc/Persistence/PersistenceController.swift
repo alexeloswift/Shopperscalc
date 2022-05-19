@@ -17,24 +17,27 @@ class PersistenceController {
     
     // A test configuration for SwiftUI previews
     static var preview: PersistenceController = {
-        let controller = PersistenceController(inMemory: true)
+        let controller = PersistenceController()
         return controller
     }()
     
-    // An initializer to load Core Data, optionally able
-    // to use an in-memory store.
-    init(inMemory: Bool = false) {
+    init() {
         
         container = NSPersistentContainer(name: "Calculations")
         
-        if inMemory {
-            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
-        }
+//        /*add necessary support for migration*/
+//         let description = NSPersistentStoreDescription()
+//         description.shouldMigrateStoreAutomatically = true
+//         description.shouldInferMappingModelAutomatically = true
+//         container.persistentStoreDescriptions =  [description]
+//         /*add necessary support for migration*/
         
         container.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Error: \(error.localizedDescription)")
             }
+            
+            self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         }
     }
     

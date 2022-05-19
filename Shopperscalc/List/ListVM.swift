@@ -16,7 +16,7 @@ class ListVM: ObservableObject, Identifiable {
     
     @Published var listName: String = ""
     
-    @Published var sortType : SortType = .alphabetical
+    @Published var sortType: SortType = .alphabetical
     @Published var isPresented = false
     @Published var searched = ""
     @Published var date = Date()

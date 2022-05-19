@@ -15,78 +15,62 @@ struct AddToListView: View {
     @ObservedObject private var viewmodel = ListVM()
     @ObservedObject private var calcViewmodel = CalculatorVM()
     
-    @FetchRequest(
-        entity: ListName.entity(),
-        sortDescriptors: [
-            NSSortDescriptor(keyPath: \ListName.id, ascending: true)
-        ])
+//    @FetchRequest(
+//        entity: Lists.entity(),
+//        sortDescriptors: [
+//            NSSortDescriptor(keyPath: \Lists.listTitle, ascending: true)
+//        ])
+//
+//    var listName: FetchedResults<Lists>
     
-    var listName: FetchedResults<ListName>
-    
-    
-    
+    @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
+
     
     var body: some View {
         NavigationView {
-
-            List {
-                ForEach(listName, id: \.listTitle) {
-                    ModalListRow(listName: $0)
-                        .onTapGesture {
-                            !calcViewmodel.price.isEmpty ?
-                            addListCalculation(id: calcViewmodel.id, fullPrice: calcViewmodel.price,
-                                               newTotal: calcViewmodel.priceAfterDiscount,
-                                               discountPercentage: Int16(calcViewmodel.discountPercentage)) : nil
-                            
-                            presentationMode.wrappedValue.dismiss()
-                            
+            VStack {
+                List {
+                    ForEach(listName, id: \.self) {
+                        ModalListRow(listName: $0)
+                            .onTapGesture {
+                                !calcViewmodel.price.isEmpty ?
+                                addListCalculation(fullPrice: calcViewmodel.price,
+                                                   newTotal: calcViewmodel.priceAfterDiscount,
+                                                   discountPercentage: Int16(calcViewmodel.discountPercentage)) : nil
+                                
+                                presentationMode.wrappedValue.dismiss()
+                                
+                        }
                     }
                 }
-            }
-            //                }
-            
-            //                DatePicker("", selection: $viewmodel.date)
-            //                    .hidden()
-            
-            //            }
-            .navigationTitle("Save To List")
-            .navigationBarTitleDisplayMode(.inline)
-            
-            
-            
-            
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel", role: .destructive) {
-                        presentationMode.wrappedValue.dismiss()
+                .listStyle(.plain)
+                
+                .navigationTitle("Save To List")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Cancel", role: .destructive) {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 }
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save", role: .none) {
-                        
-                        addListName(listName: viewmodel.listName)
-                        
-                        //                        addListCalculation(fullPrice: calcViewmodel.price, newTotal: calcViewmodel.priceAfterDiscount, discountPercentage: Int16(calcViewmodel.discountPercentage))
-                        
-                        presentationMode.wrappedValue.dismiss()
-                        
-                    }
+                Button("Create New List") {
+                    viewmodel.isPresented = true
+                }
+                .offset(x: 100)
+                .padding()
+                .sheet(isPresented: $viewmodel.isPresented) {
+                    CreateNewListView()
                 }
             }
         }
     }
     
-    func addListName(listName: String) {
-        let newListName = ListName(context: managedObjectContext)
+    func addListCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
         
-        newListName.listTitle = listName
-    }
-    
-    func addListCalculation(id: UUID, fullPrice: String, newTotal: Double, discountPercentage: Int16) {
         let newListCalculation = ListCalculation(context: managedObjectContext)
         
-        newListCalculation.id = id
         newListCalculation.newTotal = newTotal
         newListCalculation.fullPrice = fullPrice
         newListCalculation.discountPercentage = discountPercentage

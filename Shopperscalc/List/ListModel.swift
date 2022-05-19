@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct ListModel: Identifiable, Equatable {
+struct ListModel: Equatable {
     
-    var id: String = UUID().uuidString
     let listName: String
     let date: Date
     

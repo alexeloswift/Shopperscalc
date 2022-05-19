@@ -15,7 +15,7 @@ struct ModalListRow: View {
         VStack (alignment : .leading) {
             HStack{
                 VStack(alignment:.leading) {
-                    Text(listName.listTitle ?? "")
+                    Text(listName.unwrappedListTitle)
                         .font(.system(size: 20, weight: .bold))
                             }
 
@@ -25,7 +25,7 @@ struct ModalListRow: View {
                     Text("Date:")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    Text(listName.date ?? Date(), style: .date)
+                    Text("\(listName.unwrappedDate, style: .date)")
                 }
             }
         }
