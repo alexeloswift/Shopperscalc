@@ -10,9 +10,12 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject private var viewmodel: CalculatorVM
+    
+//    @State private var num = 0
         
     var body: some View {
         
+//        FloatingTabbar(selected: $num)
         TabView {
             CalculatorView()
                 .tabItem {

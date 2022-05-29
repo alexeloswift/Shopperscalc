@@ -23,7 +23,7 @@ struct ListCalculationsView: View {
     
     @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
 
-    
+
     
     @State var isPresented = false
     
@@ -44,7 +44,7 @@ struct ListCalculationsView: View {
                 .shadow(color: .yellow, radius: 0.7))
 
             }
-            
+        
             .navigationBarHidden(true)
             .toolbar {
                 EditButton()

@@ -14,27 +14,10 @@ struct ListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject private var viewmodel = ListVM()
 
-    
-//    @FetchRequest(
-//        entity: Lists.entity(),
-//        sortDescriptors: [
-//            NSSortDescriptor(keyPath: \Lists.listTitle, ascending: true)
-//        ])
-//
-//    var listName: FetchedResults<Lists>
-    
-    @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
-    
-    
-//    @FetchRequest(
-//        entity: ListCalculation.entity(),
-//        sortDescriptors: [
-//            NSSortDescriptor(keyPath: \ListCalculation.fullPrice, ascending: true)
-//        ])
-//
-//    var listCalculation: FetchedResults<ListCalculation>
 
-
+    @FetchRequest(
+        sortDescriptors: [])
+        private var listName: FetchedResults<ListName>
     
     var body: some View {
         NavigationView {

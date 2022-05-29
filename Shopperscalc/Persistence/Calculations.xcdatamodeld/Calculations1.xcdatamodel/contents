@@ -18,7 +18,7 @@
     </entity>
     <elements>
         <element name="Calculation" positionX="-63" positionY="-18" width="128" height="74"/>
-        <element name="ListName" positionX="-54" positionY="-9" width="128" height="74"/>
         <element name="ListCalculation" positionX="-36" positionY="9" width="128" height="89"/>
+        <element name="ListName" positionX="-54" positionY="-9" width="128" height="74"/>
     </elements>
 </model>
