@@ -9,12 +9,12 @@
         <attribute name="discountPercentage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="fullPrice" optional="YES" attributeType="String"/>
         <attribute name="newTotal" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="listName" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListCalculation" inverseName="listName" inverseEntity="ListCalculation"/>
+        <relationship name="listName" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListName" inverseName="listCalculation" inverseEntity="ListName"/>
     </entity>
     <entity name="ListName" representedClassName="ListName" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="listTitle" optional="YES" attributeType="String"/>
-        <relationship name="listCalculation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ListName" inverseName="listCalculation" inverseEntity="ListName"/>
+        <relationship name="listCalculation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ListCalculation" inverseName="listName" inverseEntity="ListCalculation"/>
     </entity>
     <elements>
         <element name="Calculation" positionX="-63" positionY="-18" width="128" height="74"/>

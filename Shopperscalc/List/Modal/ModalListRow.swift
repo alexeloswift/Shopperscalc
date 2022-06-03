@@ -38,3 +38,15 @@ struct ModalListRow: View {
     }
     
 }
+
+extension ModalListRow {
+    
+    class ViewModel: ObservableObject {
+        let listName: ListName
+        
+        init(listName: ListName) {
+            self.listName = listName
+        }
+    }
+    
+}

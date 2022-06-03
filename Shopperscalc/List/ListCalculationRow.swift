@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ListCalculationRow: View {
     
-    let listCalculation: ListCalculation
+    @ObservedObject var listCalculation: ListCalculation
+    @StateObject var viewmodel: ViewModel
+    
+    
     
     var body: some View {
         
@@ -32,7 +35,7 @@ struct ListCalculationRow: View {
                     HStack {
                         Text("$")
                             .offset(x: 7)
-                        Text(listCalculation.fullPrice ?? "$0.00")
+                        Text(listCalculation.unwrappedFullPrice)
                     }
                     .foregroundColor(Color.red)
                     
@@ -40,5 +43,26 @@ struct ListCalculationRow: View {
             }
         }
     }
+    
+    init(listCalculation: ListCalculation) {
+        let viewmodel = ViewModel(listCalculation: listCalculation)
+        _viewmodel = StateObject(wrappedValue: viewmodel)
+        
+        self.listCalculation = listCalculation
+    }
+}
+
+extension ListCalculationRow {
+    
+    class ViewModel: ObservableObject {
+//        let listName: ListName
+        let listCalculation: ListCalculation
+        
+        init(listCalculation: ListCalculation) {
+//            self.listName = listName
+            self.listCalculation = listCalculation
+        }
+    }
+    
 }
 

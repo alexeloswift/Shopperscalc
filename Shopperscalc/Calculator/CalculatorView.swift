@@ -11,7 +11,10 @@ struct CalculatorView: View {
     
     let discountPercentages = 1..<101
     
-    @EnvironmentObject private var viewmodel: CalculatorVM
+    @EnvironmentObject var viewmodel: CalculatorVM
+    @EnvironmentObject var persistenceController: PersistenceController
+    
+
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
@@ -132,12 +135,13 @@ struct CalculatorView: View {
                     .modifier(AccentIcons())
             })
             .sheet(isPresented: $viewmodel.isPresented) {
-                AddToListView()
+                AddToListView(viewmodel: ListVM(persistenceController: persistenceController), calcViewmodel: viewmodel)
                 
             }
         }
     }
     
+
     func addListCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
         let newListCalculation = ListCalculation(context: managedObjectContext)
         

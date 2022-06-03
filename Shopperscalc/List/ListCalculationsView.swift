@@ -18,11 +18,16 @@ struct ListCalculationsView: View {
         sortDescriptors: [
             NSSortDescriptor(keyPath: \ListCalculation.fullPrice, ascending: true)
         ])
-    
+
     var listCalculations: FetchedResults<ListCalculation>
     
-    @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
+//    @FetchRequest(sortDescriptors: []) private var listName1: FetchedResults<ListName>
 
+    @StateObject var viewmodel: ViewModel
+
+    
+//    @ObservedObject var listCalculation: ListCalculation
+//    @ObservedObject var listName: ListName
 
     
     @State var isPresented = false
@@ -30,8 +35,8 @@ struct ListCalculationsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(listCalculations, id: \.fullPrice) {
-                    ListCalculationRow(listCalculation: $0)
+                ForEach(viewmodel.listName.listCalculationsCore) { item in
+                    ListCalculationRow(listCalculation: item)
 
                 }
                 .onDelete(perform: deleteCalculation)
@@ -66,6 +71,14 @@ struct ListCalculationsView: View {
         }
     }
     
+    init(listName: ListName) {
+        let viewmodel = ViewModel(listName: listName)
+        _viewmodel = StateObject(wrappedValue: viewmodel)
+        
+//        self.listCalculation = listCalculation
+//        self.listName = listName
+    }
+    
     
     func deleteAll() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ListCalculation.fetchRequest()
@@ -97,8 +110,23 @@ struct ListCalculationsView: View {
     }
 }
 
-struct ListCalculationsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListCalculationsView()
+//struct ListCalculationsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ListCalculationsView(listCalc: ListCalculation(), listNa: ListName())
+//    }
+//}
+
+
+extension ListCalculationsView {
+    
+    class ViewModel: ObservableObject {
+        let listName: ListName
+//        let listCalculation: ListCalculation
+        
+        init(listName: ListName) {
+            self.listName = listName
+//            self.listCalculation = listCalculation
+        }
     }
+    
 }

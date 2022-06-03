@@ -19,19 +19,19 @@ extension ListCalculation {
     @NSManaged public var discountPercentage: Int16
     @NSManaged public var newTotal: Double
     @NSManaged public var fullPrice: String?
-    @NSManaged public var listName: NSSet?
+    @NSManaged public var listName: ListName?
     
     public var unwrappedFullPrice: String {
         fullPrice ?? "0.00"
     }
 
-    public var listOriginArray: [ListName] {
-        let set = listName as? Set<ListName> ?? []
-        
-        return set.sorted {
-            $0.unwrappedListTitle < $1.unwrappedListTitle
-        }
-    }
+//    public var listOriginArray: [ListName] {
+//        let set = listName as? Set<ListName> ?? []
+//        
+//        return set.sorted {
+//            $0.unwrappedListTitle < $1.unwrappedListTitle
+//        }
+//    }
 
 }
 

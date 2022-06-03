@@ -11,6 +11,8 @@ import CoreData
 
 
 extension ListName {
+    
+
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ListName> {
         return NSFetchRequest<ListName>(entityName: "ListName")
@@ -20,6 +22,10 @@ extension ListName {
     @NSManaged public var listTitle: String?
     @NSManaged public var listCalculation: NSSet?
     
+    public var listCalculationsCore: [ListCalculation] {
+        listCalculation?.allObjects as? [ListCalculation] ?? []
+    }
+    
     public var unwrappedListTitle: String {
         listTitle ?? ""
     }
@@ -27,13 +33,7 @@ extension ListName {
         date ?? Date()
     }
     
-    public var listCalculationArray: [ListCalculation] {
-        let set = listCalculation as? Set<ListCalculation> ?? []
-        
-        return set.sorted {
-            $0.unwrappedFullPrice < $1.unwrappedFullPrice
-        }
-    }
+
 
 }
 

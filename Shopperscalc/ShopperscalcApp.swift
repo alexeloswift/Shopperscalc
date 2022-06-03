@@ -10,13 +10,17 @@ import SwiftUI
 @main
 struct ShopperscalcApp: App {
     
+    @StateObject var persistenceController: PersistenceController
     @StateObject var viewmodel: CalculatorVM
+
     
-    let persistenceController = PersistenceController.shared
     
     
     init() {
         self._viewmodel = StateObject(wrappedValue: CalculatorVM())
+        
+        let persistenceController = PersistenceController()
+        _persistenceController = StateObject(wrappedValue: persistenceController)
     }
     
     var body: some Scene {
@@ -25,6 +29,7 @@ struct ShopperscalcApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(viewmodel)
+                .environmentObject(persistenceController)
         }
     }
 }

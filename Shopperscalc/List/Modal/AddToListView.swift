@@ -12,32 +12,22 @@ struct AddToListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject private var viewmodel = ListVM()
-    @ObservedObject private var calcViewmodel = CalculatorVM()
-    
-//    @FetchRequest(
-//        entity: Lists.entity(),
-//        sortDescriptors: [
-//            NSSortDescriptor(keyPath: \Lists.listTitle, ascending: true)
-//        ])
-//
-//    var listName: FetchedResults<Lists>
-    
-    @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
+    @ObservedObject var viewmodel: ListVM
+    @ObservedObject var calcViewmodel: CalculatorVM
 
-    
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(listName, id: \.self) {
-                        ModalListRow(listName: $0)
+                    ForEach(viewmodel.listNames) { item in
+                        ModalListRow(listName: item)
                             .onTapGesture {
                                 !calcViewmodel.price.isEmpty ?
-                                addListCalculation(fullPrice: calcViewmodel.price,
-                                                   newTotal: calcViewmodel.priceAfterDiscount,
-                                                   discountPercentage: Int16(calcViewmodel.discountPercentage)) : nil
-                                
+                                addListCalculationToList(to: item,
+                                                         fullPrice: calcViewmodel.price,
+                                                         newTotal: calcViewmodel.priceAfterDiscount,
+                                                         discountPercentage: Int16(calcViewmodel.discountPercentage)) : print("items not saved")
+
                                 presentationMode.wrappedValue.dismiss()
                                 
                         }
@@ -61,21 +51,26 @@ struct AddToListView: View {
                 .offset(x: 100)
                 .padding()
                 .sheet(isPresented: $viewmodel.isPresented) {
-                    CreateNewListView()
+                    CreateNewListView(viewmodel: viewmodel)
                 }
             }
         }
     }
     
-    func addListCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+
+    
+    func addListCalculationToList(to listName: ListName, fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+        print("Data Saved")
+
+        let listCalculation = ListCalculation(context: managedObjectContext)
+        listCalculation.listName = listName
+        listCalculation.newTotal = newTotal
+        listCalculation.fullPrice = fullPrice
+        listCalculation.discountPercentage = discountPercentage
         
-        let newListCalculation = ListCalculation(context: managedObjectContext)
-        
-        newListCalculation.newTotal = newTotal
-        newListCalculation.fullPrice = fullPrice
-        newListCalculation.discountPercentage = discountPercentage
-        
+
         saveContext()
+        
     }
     
     func saveContext() {
@@ -88,8 +83,10 @@ struct AddToListView: View {
     
 }
 
-struct AddToListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddToListView()
-    }
-}
+//struct AddToListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddToListView()
+//    }
+//}
+
+

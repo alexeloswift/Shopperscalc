@@ -12,7 +12,7 @@ struct CreateNewListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject private var viewmodel = ListVM()
+    @ObservedObject var viewmodel: ListVM
     
 //    @FetchRequest(
 //        entity: Lists.entity(),
@@ -22,7 +22,7 @@ struct CreateNewListView: View {
 //
 //    var listName: FetchedResults<Lists>
     
-    @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
+//    @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
 
     
     var body: some View {
@@ -60,10 +60,7 @@ struct CreateNewListView: View {
 
             }
             
-            
 
-            
-            
                 .navigationTitle("Save List")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -102,11 +99,11 @@ struct CreateNewListView: View {
     }
 }
 
-struct CreateNewListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateNewListView()
-    }
-}
+//struct CreateNewListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateNewListView()
+//    }
+//}
 
 extension Color {
     static let lightShadow = Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255)

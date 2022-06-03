@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ListRow: View {
     
-    var listName: ListName
+    @ObservedObject var listName: ListName
+//    @ObservedObject var viewmodel: ListCalculationsView.ViewModel
+//    @ObservedObject var listCalulation: ListCalculation
     
     
     
@@ -19,7 +21,7 @@ struct ListRow: View {
                 VStack(alignment:.leading) {
                     Text(listName.unwrappedListTitle)
                         .font(.system(size: 20, weight: .bold))
-                        .background(NavigationLink("", destination: ListCalculationsView()).opacity(0))
+                        .background(NavigationLink("", destination: ListCalculationsView(listName: listName)).opacity(0))
                 }
                 
                 Spacer()
@@ -38,6 +40,18 @@ struct ListRow: View {
             RoundedRectangle(cornerRadius: 10 , style: .continuous)
                 .stroke(.yellow, lineWidth: 0.7)
                 .shadow(color: .yellow, radius: 0.7))
+    }
+    
+}
+
+extension ListRow {
+    
+    class ViewModel: ObservableObject {
+        let listName: ListName
+        
+        init(listName: ListName) {
+            self.listName = listName
+        }
     }
     
 }

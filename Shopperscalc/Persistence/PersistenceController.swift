@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-class PersistenceController {
+class PersistenceController: ObservableObject {
     
     static let shared = PersistenceController()
     

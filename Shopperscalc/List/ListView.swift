@@ -12,36 +12,41 @@ struct ListView: View {
     
     
     @Environment(\.managedObjectContext) var managedObjectContext
-    @ObservedObject private var viewmodel = ListVM()
-
-
+    @ObservedObject var viewmodel: ListVM
+    
+    
     @FetchRequest(
         sortDescriptors: [])
-        private var listName: FetchedResults<ListName>
+    private var listName: FetchedResults<ListName>
+    
+    //    @ObservedObject var listCalculation: ListCalculation
+    //    @ObservedObject var listNa: ListName
+    //    @ObservedObject var viewmodel1: ListCalculationsView.ViewModel
+    
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(listName, id: \.self) {
-                    ListRow(listName: $0)
+                ForEach(viewmodel.listNames) { item in
+                    ListRow(listName: item)
                 }
-
-                    .onDelete(perform: { deleteCalculation(at: $0) })
-                    .listRowSeparator(.hidden)
-
+                .onDelete { offsets in
+                    deleteCalculation(at: offsets)
+                }
             }
-
-                .navigationTitle("List")
-                .navigationBarItems(trailing: Button("Create New List") {
-                    viewmodel.isPresented = true
-                })
-
-                .sheet(isPresented: $viewmodel.isPresented) {
-                        CreateNewListView()
-                    
-                }
+            .listRowSeparator(.hidden)
+            .navigationTitle("List")
+            .navigationBarItems(trailing: Button("Create New List") {
+                viewmodel.isPresented = true
+            })
+            
+            .sheet(isPresented: $viewmodel.isPresented) {
+                CreateNewListView(viewmodel: viewmodel)
+                
+            }
         }
     }
+    
     
     func deleteAll() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ListCalculation.fetchRequest()
@@ -71,11 +76,11 @@ struct ListView: View {
             print("Error saving managed object context: \(error)")
         }
     }
-
+    
 }
 
-struct ListView_Previews: PreviewProvider {
-    static var previews: some View {
-            ListView()
-    }
-}
+//struct ListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//            ListView()
+//    }
+//}

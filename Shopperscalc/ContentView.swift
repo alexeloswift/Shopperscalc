@@ -10,6 +10,9 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject private var viewmodel: CalculatorVM
+    @EnvironmentObject var persistenceController: PersistenceController
+    @EnvironmentObject var viewmodel1: ListCalculationsView.ViewModel
+
     
 //    @State private var num = 0
         
@@ -21,7 +24,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Calculator", systemImage: "list.dash")
                 }
-            ListView()
+            ListView(viewmodel: ListVM(persistenceController: persistenceController))
                 .tabItem {
                     Label("List", systemImage: "square.and.pencil")
                 }
@@ -35,9 +38,9 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .environmentObject(CalculatorVM())
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//            .environmentObject(CalculatorVM())
+//    }
+//}
