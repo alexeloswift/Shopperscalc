@@ -10,26 +10,9 @@ import CoreData
 
 class ListVM: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     
-//    extension AddToListView {
-//
-//        class ViewModel: ObservableObject {
-
-//
-//            init(listName: ListName, listCalculation: ListCalculation) {
-
-//            }
-//        }
-//
-//    }
-    
-    
-    
 
     @Published var listName: String = ""
-    
-//    @Published var sortType: SortType = .alphabetical
     @Published var isPresented = false
-//    @Published var searched = ""
     @Published var date = Date()
     
     let persistenceController: PersistenceController
@@ -38,12 +21,9 @@ class ListVM: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     @Published var listNames = [ListName]()
     
     init(persistenceController: PersistenceController) {
-        
-
-        
         self.persistenceController = persistenceController
         let request: NSFetchRequest<ListName> = ListName.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \ListName.date, ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \ListName.date, ascending: true)]
         listNameController = NSFetchedResultsController(fetchRequest: request,
                                                         managedObjectContext: persistenceController.container.viewContext,
                                                         sectionNameKeyPath: nil,
@@ -58,22 +38,58 @@ class ListVM: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
         }
     }
     
-//    func addList(list: ListModel) {
-//        lists.append(list)
-//    }
-//    
-//    func removeList(at offsets: IndexSet) {
-//        lists.remove(atOffsets: offsets)
-//    }
-//    
-//    func sort(){
+    func addListName(listName: String) {
+        let newListName = ListName(context: persistenceController.container.viewContext)
+        newListName.listTitle = listName
+        persistenceController.save()
+    }
+    
+    func addListCalculationToList(to listName: ListName, fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+        let listCalculation = ListCalculation(context: persistenceController.container.viewContext)
+        listCalculation.listName = listName
+        listCalculation.newTotal = newTotal
+        listCalculation.fullPrice = fullPrice
+        listCalculation.discountPercentage = discountPercentage
+        
+        persistenceController.save()
+        
+    }
+    
+    func deleteCalculation(at offsets: IndexSet, from listName: ListName) {
+        let allItems = listName.listCalculationsCore
+        for offset in offsets {
+            let item = allItems[offset]
+            persistenceController.delete(item)
+        }
+        persistenceController.save()
+    }
+    
+    //    func deleteAll() {
+    //        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ListCalculation.fetchRequest()
+    //        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+    //
+    //        let persistentContainer = PersistenceController.shared.container
+    //
+    //        do {
+    //            try persistentContainer.viewContext.executeAndMergeChanges(using: deleteRequest)
+    //        } catch let error as NSError {
+    //            print(error)
+    //        }
+    //    }
+
+//    func deleteAll() {
+//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ListCalculation.fetchRequest()
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 //        
-//        switch sortType {
-//        case .alphabetical :
-//            lists.sort(by: { $0.listName < $1.listName })
-//        case .date :
-//            lists.sort(by: { $0.date > $1.date })
+//        let persistentContainer = PersistenceController.shared.container
+//        
+//        do {
+//            try persistentContainer.viewContext.executeAndMergeChanges(using: deleteRequest)
+//        } catch let error as NSError {
+//            print(error)
 //        }
 //    }
+
+
 }
 

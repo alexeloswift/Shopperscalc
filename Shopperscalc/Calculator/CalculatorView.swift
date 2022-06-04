@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct CalculatorView: View {
-    
+    @EnvironmentObject var persistenceController: PersistenceController
+    @StateObject var listViewmodel: ListVM
+    @StateObject var viewmodel: CalculatorVM
+
     let discountPercentages = 1..<101
     
-    @EnvironmentObject var viewmodel: CalculatorVM
-    @EnvironmentObject var persistenceController: PersistenceController
-    
-
-    
-    @Environment(\.managedObjectContext) var managedObjectContext
+    init(persistenceController: PersistenceController) {
+        let viewmodel = CalculatorVM(persistenceController: persistenceController)
+        _viewmodel = StateObject(wrappedValue: viewmodel)
+        
+        let listViewmodel = ListVM(persistenceController: persistenceController)
+        _listViewmodel = StateObject(wrappedValue: listViewmodel)
+    }
     
     var body: some View {
-        
         NavigationView {
             GeometryReader { geo in
                 ScrollView(.vertical, showsIndicators: true) {
@@ -89,7 +92,7 @@ struct CalculatorView: View {
                             Button("calculate") {
                                 viewmodel.presentCalculation()
                                 
-                                !viewmodel.price.isEmpty ? addCalculation(
+                                !viewmodel.price.isEmpty ? viewmodel.addCalculation(
                                     fullPrice: viewmodel.price,
                                     newTotal: viewmodel.priceAfterDiscount,
                                     discountPercentage: Int16(viewmodel.discountPercentage)) : nil
@@ -124,7 +127,7 @@ struct CalculatorView: View {
             .navigationBarItems(trailing: Button(action: {
                 viewmodel.isPresented = true
                 
-                !viewmodel.price.isEmpty ? addListCalculation(
+                !viewmodel.price.isEmpty ? viewmodel.addListCalculation(
                     fullPrice: viewmodel.price,
                     newTotal: viewmodel.priceAfterDiscount,
                     discountPercentage: Int16(viewmodel.discountPercentage)) : nil
@@ -135,48 +138,22 @@ struct CalculatorView: View {
                     .modifier(AccentIcons())
             })
             .sheet(isPresented: $viewmodel.isPresented) {
-                AddToListView(viewmodel: ListVM(persistenceController: persistenceController), calcViewmodel: viewmodel)
+                AddToListView(viewmodel: listViewmodel, calcViewmodel: viewmodel)
                 
             }
         }
     }
     
 
-    func addListCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
-        let newListCalculation = ListCalculation(context: managedObjectContext)
-        
-        newListCalculation.newTotal = newTotal
-        newListCalculation.fullPrice = fullPrice
-        newListCalculation.discountPercentage = discountPercentage
-        
-        saveContext()
-    }
     
-    func addCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
-        let newCalculation = Calculation(context: managedObjectContext)
-        
-        newCalculation.newTotal = newTotal
-        newCalculation.fullPrice = fullPrice
-        newCalculation.discountPercentage = discountPercentage
-        
-        saveContext()
-    }
-    
-    func saveContext() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Error saving managed object context: \(error)")
-        }
-    }
+
 }
 
 
 
 struct CalculatorView_Previews: PreviewProvider {
     static var previews: some View {
-        CalculatorView()
+        CalculatorView(persistenceController: .preview)
             .preferredColorScheme(.light)
-            .environmentObject(CalculatorVM())
     }
 }

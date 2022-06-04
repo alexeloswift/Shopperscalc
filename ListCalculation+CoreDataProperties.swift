@@ -24,15 +24,17 @@ extension ListCalculation {
     public var unwrappedFullPrice: String {
         fullPrice ?? "0.00"
     }
-
-//    public var listOriginArray: [ListName] {
-//        let set = listName as? Set<ListName> ?? []
-//        
-//        return set.sorted {
-//            $0.unwrappedListTitle < $1.unwrappedListTitle
-//        }
-//    }
-
+    
+    static var example: ListCalculation {
+        let controller = PersistenceController.preview
+        let viewContext = controller.container.viewContext
+        let listCalculation = ListCalculation(context: viewContext)
+        listCalculation.fullPrice = "$0.00"
+        listCalculation.discountPercentage = 20
+        listCalculation.newTotal = 0.0
+        
+        return listCalculation
+    }
 }
 
 // MARK: Generated accessors for listName

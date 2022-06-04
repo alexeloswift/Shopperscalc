@@ -9,21 +9,9 @@ import SwiftUI
 
 struct CreateNewListView: View {
     
-    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewmodel: ListVM
-    
-//    @FetchRequest(
-//        entity: Lists.entity(),
-//        sortDescriptors: [
-//            NSSortDescriptor(keyPath: \Lists.listTitle, ascending: true)
-//        ])
-//
-//    var listName: FetchedResults<Lists>
-    
-//    @FetchRequest(sortDescriptors: []) private var listName: FetchedResults<ListName>
-
     
     var body: some View {
         NavigationView {
@@ -44,7 +32,7 @@ struct CreateNewListView: View {
                         .hidden()
                     
                     Button("Save") {
-                        addListName(listName: viewmodel.listName)
+                        viewmodel.addListName(listName: viewmodel.listName)
                         presentationMode.wrappedValue.dismiss()
                     }
                     .foregroundColor(Color.black)
@@ -72,36 +60,18 @@ struct CreateNewListView: View {
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Save", role: .none) {
-                            addListName(listName: viewmodel.listName)
+                            viewmodel.addListName(listName: viewmodel.listName)
                             presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
-            
-
-            
-        }
-    }
-    
-    func addListName(listName: String) {
-        let newListName = ListName(context: managedObjectContext)
-        
-        newListName.listTitle = listName
-        saveContext()
-    }
-    
-    func saveContext() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Error saving managed object context: \(error)")
         }
     }
 }
 
 //struct CreateNewListView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        CreateNewListView()
+//        CreateNewListView(, viewmodel: <#ListVM#>)
 //    }
 //}
 

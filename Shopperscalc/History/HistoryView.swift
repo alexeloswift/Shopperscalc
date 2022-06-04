@@ -11,18 +11,14 @@ import CoreData
 
 struct HistoryView: View {
     
-    @Environment(\.managedObjectContext) var managedObjectContext
-    
-    @FetchRequest(
-        entity: Calculation.entity(),
-        sortDescriptors: [
-            NSSortDescriptor(keyPath: \Calculation.fullPrice, ascending: true)
-        ])
-    
-    var calculations: FetchedResults<Calculation>
-    
+    @StateObject var viewmodel: CalculatorVM
     
     @State var isPresented = false
+    
+    init(persistenceController: PersistenceController) {
+        let viewmodel = CalculatorVM(persistenceController: persistenceController)
+        _viewmodel = StateObject(wrappedValue: viewmodel)
+    }
     
     var body: some View {
         NavigationView {
@@ -32,11 +28,11 @@ struct HistoryView: View {
                     .modifier(AccentIcons())
                     .multilineTextAlignment(.center)
                 
-                ForEach(calculations, id: \.fullPrice) {
+                ForEach(viewmodel.calculation, id: \.fullPrice) {
                     CalculationRow(calculation: $0)
 
                 }
-                .onDelete(perform: deleteCalculation)
+//                .onDelete(perform: deleteCalculation)
                 .listRowSeparator(.hidden)
                 .padding(10)
                 .cornerRadius(10)
@@ -60,7 +56,7 @@ struct HistoryView: View {
                 .modifier(AccentIcons())
                 .alert("Delete All?", isPresented: $isPresented) {
                     Button("Yes", role: .destructive)  {
-                        deleteAll()
+//                        deleteAll()
                         
                     }
                 }
@@ -69,40 +65,13 @@ struct HistoryView: View {
     }
     
     
-    func deleteAll() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Calculation.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        let persistentContainer = PersistenceController.shared.container
-        
-        do {
-            try persistentContainer.viewContext.executeAndMergeChanges(using: deleteRequest)
-        } catch let error as NSError {
-            print(error)
-        }
-    }
-    
-    func deleteCalculation(at offsets: IndexSet) {
-        offsets.forEach { index in
-            let calculation = self.calculations[index]
-            self.managedObjectContext.delete(calculation)
-        }
-        saveContext()
-    }
-    
-    func saveContext() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Error saving managed object context: \(error)")
-        }
-    }
+
 }
 
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView()
-        
+        HistoryView(persistenceController: .preview)
+
     }
 }

@@ -10,10 +10,6 @@ import SwiftUI
 struct ListRow: View {
     
     @ObservedObject var listName: ListName
-//    @ObservedObject var viewmodel: ListCalculationsView.ViewModel
-//    @ObservedObject var listCalulation: ListCalculation
-    
-    
     
     var body: some View {
         VStack (alignment : .leading){
@@ -42,7 +38,15 @@ struct ListRow: View {
                 .shadow(color: .yellow, radius: 0.7))
     }
     
+
+
+struct ListRow_Previews: PreviewProvider {
+    static var previews: some View {
+        ListRow(listName: ListName.example)
+    }
 }
+}
+
 
 extension ListRow {
     

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AddToListView: View {
     
-    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewmodel: ListVM
@@ -23,7 +22,7 @@ struct AddToListView: View {
                         ModalListRow(listName: item)
                             .onTapGesture {
                                 !calcViewmodel.price.isEmpty ?
-                                addListCalculationToList(to: item,
+                                viewmodel.addListCalculationToList(to: item,
                                                          fullPrice: calcViewmodel.price,
                                                          newTotal: calcViewmodel.priceAfterDiscount,
                                                          discountPercentage: Int16(calcViewmodel.discountPercentage)) : print("items not saved")
@@ -56,36 +55,12 @@ struct AddToListView: View {
             }
         }
     }
-    
-
-    
-    func addListCalculationToList(to listName: ListName, fullPrice: String, newTotal: Double, discountPercentage: Int16) {
-        print("Data Saved")
-
-        let listCalculation = ListCalculation(context: managedObjectContext)
-        listCalculation.listName = listName
-        listCalculation.newTotal = newTotal
-        listCalculation.fullPrice = fullPrice
-        listCalculation.discountPercentage = discountPercentage
-        
-
-        saveContext()
-        
-    }
-    
-    func saveContext() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Error saving managed object context: \(error)")
-        }
-    }
-    
 }
 
 //struct AddToListView_Previews: PreviewProvider {
+
 //    static var previews: some View {
-//        AddToListView()
+//        AddToListView(presentationMode: , viewmodel: ListVM.init(persistenceController: PersistenceController.preview), calcViewmodel: CalculatorVM(persistenceController: PersistenceController.preview))
 //    }
 //}
 

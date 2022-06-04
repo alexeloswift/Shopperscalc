@@ -12,14 +12,18 @@ struct ListCalculationRow: View {
     @ObservedObject var listCalculation: ListCalculation
     @StateObject var viewmodel: ViewModel
     
-    
+    init(listCalculation: ListCalculation) {
+        let viewmodel = ViewModel(listCalculation: listCalculation)
+        _viewmodel = StateObject(wrappedValue: viewmodel)
+        
+        self.listCalculation = listCalculation
+    }
     
     var body: some View {
-        
         VStack(alignment: .center) {
             Text("New Total")
-                Text("$\(listCalculation.newTotal, specifier: "%. 2f")")
-            .font(.title2)
+            Text("$\(listCalculation.newTotal, specifier: "%. 2f")")
+                .font(.title2)
             
             HStack(alignment: .center) {
                 VStack {
@@ -44,22 +48,21 @@ struct ListCalculationRow: View {
         }
     }
     
-    init(listCalculation: ListCalculation) {
-        let viewmodel = ViewModel(listCalculation: listCalculation)
-        _viewmodel = StateObject(wrappedValue: viewmodel)
-        
-        self.listCalculation = listCalculation
+
+    
+    struct ListCalculationRow_Previews: PreviewProvider {
+        static var previews: some View {
+            ListCalculationRow(listCalculation: ListCalculation.example)
+        }
     }
 }
 
 extension ListCalculationRow {
     
     class ViewModel: ObservableObject {
-//        let listName: ListName
         let listCalculation: ListCalculation
         
         init(listCalculation: ListCalculation) {
-//            self.listName = listName
             self.listCalculation = listCalculation
         }
     }

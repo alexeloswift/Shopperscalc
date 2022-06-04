@@ -10,19 +10,12 @@ import CoreData
 
 struct ListView: View {
     
+    @StateObject var viewmodel: ListVM
     
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @ObservedObject var viewmodel: ListVM
-    
-    
-    @FetchRequest(
-        sortDescriptors: [])
-    private var listName: FetchedResults<ListName>
-    
-    //    @ObservedObject var listCalculation: ListCalculation
-    //    @ObservedObject var listNa: ListName
-    //    @ObservedObject var viewmodel1: ListCalculationsView.ViewModel
-    
+    init(persistenceController: PersistenceController) {
+        let viewmodel = ListVM(persistenceController: persistenceController)
+        _viewmodel = StateObject(wrappedValue: viewmodel)
+    }
     
     var body: some View {
         NavigationView {
@@ -30,9 +23,9 @@ struct ListView: View {
                 ForEach(viewmodel.listNames) { item in
                     ListRow(listName: item)
                 }
-                .onDelete { offsets in
-                    deleteCalculation(at: offsets)
-                }
+//                .onDelete { offsets in
+//                    viewmodel.deleteCalculation(at: offsets, from: viewmodel.listName)
+//        }
             }
             .listRowSeparator(.hidden)
             .navigationTitle("List")
@@ -46,41 +39,11 @@ struct ListView: View {
             }
         }
     }
-    
-    
-    func deleteAll() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ListCalculation.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        let persistentContainer = PersistenceController.shared.container
-        
-        do {
-            try persistentContainer.viewContext.executeAndMergeChanges(using: deleteRequest)
-        } catch let error as NSError {
-            print(error)
-        }
-    }
-    
-    func deleteCalculation(at offsets: IndexSet) {
-        offsets.forEach { index in
-            let list = self.listName[index]
-            self.managedObjectContext.delete(list)
-        }
-        saveContext()
-    }
-    
-    func saveContext() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Error saving managed object context: \(error)")
-        }
-    }
-    
+
 }
 
-//struct ListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//            ListView()
-//    }
-//}
+struct ListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ListView(persistenceController: .preview)
+    }
+}

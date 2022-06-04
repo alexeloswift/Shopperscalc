@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @EnvironmentObject private var viewmodel: CalculatorVM
-    @EnvironmentObject var persistenceController: PersistenceController
-    @EnvironmentObject var viewmodel1: ListCalculationsView.ViewModel
 
+    @EnvironmentObject var persistenceController: PersistenceController
     
 //    @State private var num = 0
         
@@ -20,21 +17,20 @@ struct ContentView: View {
         
 //        FloatingTabbar(selected: $num)
         TabView {
-            CalculatorView()
+            CalculatorView(persistenceController: persistenceController)
                 .tabItem {
                     Label("Calculator", systemImage: "list.dash")
                 }
-            ListView(viewmodel: ListVM(persistenceController: persistenceController))
+            ListView(persistenceController: persistenceController)
                 .tabItem {
                     Label("List", systemImage: "square.and.pencil")
                 }
-            HistoryView()
+            HistoryView(persistenceController: persistenceController)
                 .tabItem {
                     Label("History", systemImage: "clock")
                 }
 
         }
-        .environmentObject(viewmodel)
     }
 }
 

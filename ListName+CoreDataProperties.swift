@@ -33,8 +33,16 @@ extension ListName {
         date ?? Date()
     }
     
-
-
+    static var example: ListName {
+        let controller = PersistenceController.preview
+        let viewContext = controller.container.viewContext
+        let listName = ListName(context: viewContext)
+        
+        listName.listTitle = "Urban Outfitters"
+        listName.date = Date()
+        
+        return listName
+    }
 }
 
 // MARK: Generated accessors for listCalculation

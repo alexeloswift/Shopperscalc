@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CoreData
 
-class CalculatorVM: ObservableObject {
+class CalculatorVM: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     
     //    Input
     @Published var discountPercentage: Int = 20
@@ -20,6 +21,47 @@ class CalculatorVM: ObservableObject {
     @Published var taxesAmountAfterDiscount: Double = 0.0
     
     @Published var isPresented: Bool = false
+    
+    @Published var listNames = [ListName]()
+    @Published var calculation = [Calculation]()
+
+    
+    let persistenceController: PersistenceController
+    let listNameController: NSFetchedResultsController <ListName>
+    let calculationController: NSFetchedResultsController<Calculation>
+
+    
+    init(persistenceController: PersistenceController) {
+        self.persistenceController = persistenceController
+        
+        let calculationRequest: NSFetchRequest<Calculation> = Calculation.fetchRequest()
+        calculationRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Calculation.fullPrice, ascending: false)]
+        calculationController = NSFetchedResultsController(fetchRequest: calculationRequest,
+                                                           managedObjectContext: persistenceController.container.viewContext,
+                                                           sectionNameKeyPath: nil,
+                                                           cacheName:  nil)
+        
+        
+        let request: NSFetchRequest<ListName> = ListName.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \ListName.date, ascending: false)]
+        listNameController = NSFetchedResultsController(fetchRequest: request,
+                                                        managedObjectContext: persistenceController.container.viewContext,
+                                                        sectionNameKeyPath: nil,
+                                                        cacheName: nil)
+        super.init()
+        listNameController.delegate = self
+        calculationController.delegate = self
+        do {
+            try calculationController.performFetch()
+            try listNameController.performFetch()
+            calculation = calculationController.fetchedObjects ?? []
+            listNames = listNameController.fetchedObjects ?? []
+        } catch {
+            print("Failed fetch")
+        }
+    }
+
+
     
     func calculateNewTotal(price: String, discountPercentage: Int) -> Double {
         
@@ -70,4 +112,46 @@ class CalculatorVM: ObservableObject {
         priceAfterDiscountWithTax = 0.0
         taxesAmountAfterDiscount = 0.0
     }
+    
+    func addListCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+        let newListCalculation = ListCalculation(context: persistenceController.container.viewContext)
+        
+        newListCalculation.newTotal = newTotal
+        newListCalculation.fullPrice = fullPrice
+        newListCalculation.discountPercentage = discountPercentage
+        
+        persistenceController.save()
+    }
+    
+    func addCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
+        let newCalculation = Calculation(context: persistenceController.container.viewContext)
+        
+        newCalculation.newTotal = newTotal
+        newCalculation.fullPrice = fullPrice
+        newCalculation.discountPercentage = discountPercentage
+        
+        persistenceController.save()
+    }
+    
+//    func deleteAll() {
+//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Calculation.fetchRequest()
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+//
+//        let persistentContainer = PersistenceController.shared.container
+//
+//        do {
+//            try persistentContainer.viewContext.executeAndMergeChanges(using: deleteRequest)
+//        } catch let error as NSError {
+//            print(error)
+//        }
+//    }
+
+//    func deleteCalculation(at offsets: IndexSet) {
+//        offsets.forEach { index in
+//            let calculation = self.calculations[index]
+//            self.managedObjectContext.delete(calculation)
+//        }
+//        persistenceController.save()
+//    }
+
 }
