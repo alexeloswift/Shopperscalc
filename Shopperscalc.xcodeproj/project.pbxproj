@@ -145,13 +145,13 @@
 		FD4372F22814583300B7D10D /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				FD4372F02814580A00B7D10D /* PersistenceController.swift */,
 				FDB9E9062835F57C00AECA5C /* Calculations.xcdatamodeld */,
-				FD11EB512819C6F500B486B1 /* BatchDelete.swift */,
+				FD4372F02814580A00B7D10D /* PersistenceController.swift */,
 				FDB9E90A2835F81F00AECA5C /* ListCalculation+CoreDataClass.swift */,
 				FDB9E90B2835F81F00AECA5C /* ListCalculation+CoreDataProperties.swift */,
 				FDB9E90C2835F81F00AECA5C /* ListName+CoreDataClass.swift */,
 				FDB9E90D2835F81F00AECA5C /* ListName+CoreDataProperties.swift */,
+				FD11EB512819C6F500B486B1 /* BatchDelete.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -186,7 +186,6 @@
 				FD9C1CC4281BB1ED003EA990 /* History */,
 				FD9C1CC3281BB1D2003EA990 /* List */,
 				FD4372F22814583300B7D10D /* Persistence */,
-				FD8917172808A00F00498E4D /* ViewModifiers */,
 				FD11EB532819C9FA00B486B1 /* Extensions */,
 				FD4D9E9027F6ABAD00941EA5 /* Assets.xcassets */,
 				FD4D9E9227F6ABAD00941EA5 /* Preview Content */,
@@ -257,6 +256,7 @@
 			children = (
 				FDED2B7F27FCB8300049953C /* CalculatorView.swift */,
 				FDED2B8127FCB84B0049953C /* CalculatorVM.swift */,
+				FD8917172808A00F00498E4D /* ViewModifiers */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";

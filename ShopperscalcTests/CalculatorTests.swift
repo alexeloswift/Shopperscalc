@@ -10,16 +10,16 @@ import XCTest
 
 class CalculatorTests: XCTestCase {
     
-    let calculatorViewModel = CalculatorVM()
+    let viewmodel = CalculatorVM(persistenceController: PersistenceController())
     
     
     func testcalculateNewTotal() {
         
         // testing initial state
-        XCTAssertEqual(calculatorViewModel.price, "")
-        XCTAssertEqual(calculatorViewModel.discountPercentage, 20)
+        XCTAssertEqual(viewmodel.price, "")
+        XCTAssertEqual(viewmodel.discountPercentage, 20)
         
-        let newTotal = calculatorViewModel.calculateNewTotal(price: "10", discountPercentage: 20)
+        let newTotal = viewmodel.calculateNewTotal(price: "10", discountPercentage: 20)
         
         XCTAssertEqual(newTotal, 8)
     }
@@ -27,11 +27,11 @@ class CalculatorTests: XCTestCase {
     func testcalculateTaxAmount() {
         
         // testing initial state
-        XCTAssertEqual(calculatorViewModel.price, "")
-        XCTAssertEqual(calculatorViewModel.discountPercentage, 20)
-        XCTAssertEqual(calculatorViewModel.taxPercentage, 0.07)
+        XCTAssertEqual(viewmodel.price, "")
+        XCTAssertEqual(viewmodel.discountPercentage, 20)
+        XCTAssertEqual(viewmodel.taxPercentage, 0.07)
         
-        let taxAmount = calculatorViewModel.calculateTaxAmount(price: "10", discountPercentage: 20, taxPercentage: 0.07)
+        let taxAmount = viewmodel.calculateTaxAmount(price: "10", discountPercentage: 20, taxPercentage: 0.07)
         
         XCTAssertEqual(taxAmount, 0.56)
         
@@ -40,11 +40,11 @@ class CalculatorTests: XCTestCase {
     func testcalculateNewTotalWithTax() {
         
         // testing initial state
-        XCTAssertEqual(calculatorViewModel.price, "")
-        XCTAssertEqual(calculatorViewModel.discountPercentage, 20)
-        XCTAssertEqual(calculatorViewModel.taxPercentage, 0.07)
+        XCTAssertEqual(viewmodel.price, "")
+        XCTAssertEqual(viewmodel.discountPercentage, 20)
+        XCTAssertEqual(viewmodel.taxPercentage, 0.07)
         
-        let newTotalWithTax = calculatorViewModel.calculateNewTotalWithTax(price: "10", discountPercentage: 20, taxPercentage: 0.07)
+        let newTotalWithTax = viewmodel.calculateNewTotalWithTax(price: "10", discountPercentage: 20, taxPercentage: 0.07)
         
         XCTAssertEqual(newTotalWithTax, 8.56)
         
@@ -53,23 +53,23 @@ class CalculatorTests: XCTestCase {
     func testpresentCalculation() {
         
         // testing initial state
-        XCTAssertEqual(calculatorViewModel.price, "")
-        XCTAssertEqual(calculatorViewModel.discountPercentage, 20)
-        XCTAssertEqual(calculatorViewModel.taxPercentage, 0.07)
+        XCTAssertEqual(viewmodel.price, "")
+        XCTAssertEqual(viewmodel.discountPercentage, 20)
+        XCTAssertEqual(viewmodel.taxPercentage, 0.07)
         
-        let newTotal = calculatorViewModel.calculateNewTotal(price: "10", discountPercentage: 20)
-        let taxAmount = calculatorViewModel.calculateTaxAmount(price: "10", discountPercentage: 20, taxPercentage: 0.07)
-        let newTotalWithTax = calculatorViewModel.calculateNewTotalWithTax(price: "10", discountPercentage: 20, taxPercentage: 0.07)
-        
-        
-        calculatorViewModel.priceAfterDiscount = newTotal
-        calculatorViewModel.priceAfterDiscountWithTax = newTotalWithTax
-        calculatorViewModel.taxesAmountAfterDiscount = taxAmount
+        let newTotal = viewmodel.calculateNewTotal(price: "10", discountPercentage: 20)
+        let taxAmount = viewmodel.calculateTaxAmount(price: "10", discountPercentage: 20, taxPercentage: 0.07)
+        let newTotalWithTax = viewmodel.calculateNewTotalWithTax(price: "10", discountPercentage: 20, taxPercentage: 0.07)
         
         
-        XCTAssertEqual(calculatorViewModel.priceAfterDiscount, 8)
-        XCTAssertEqual(calculatorViewModel.priceAfterDiscountWithTax, 8.56)
-        XCTAssertEqual(calculatorViewModel.taxesAmountAfterDiscount, 0.56)
+        viewmodel.priceAfterDiscount = newTotal
+        viewmodel.priceAfterDiscountWithTax = newTotalWithTax
+        viewmodel.taxesAmountAfterDiscount = taxAmount
+        
+        
+        XCTAssertEqual(viewmodel.priceAfterDiscount, 8)
+        XCTAssertEqual(viewmodel.priceAfterDiscountWithTax, 8.56)
+        XCTAssertEqual(viewmodel.taxesAmountAfterDiscount, 0.56)
         
         
         
@@ -78,16 +78,16 @@ class CalculatorTests: XCTestCase {
     func testreset() {
         
         // testing initial state
-        XCTAssertEqual(calculatorViewModel.price, "")
-        XCTAssertEqual(calculatorViewModel.discountPercentage, 20)
-        XCTAssertEqual(calculatorViewModel.taxPercentage, 0.07)
+        XCTAssertEqual(viewmodel.price, "")
+        XCTAssertEqual(viewmodel.discountPercentage, 20)
+        XCTAssertEqual(viewmodel.taxPercentage, 0.07)
         
-        calculatorViewModel.reset()
+        viewmodel.reset()
         
-        XCTAssertEqual(calculatorViewModel.price, "")
-        XCTAssertEqual(calculatorViewModel.priceAfterDiscount, 0.0)
-        XCTAssertEqual(calculatorViewModel.priceAfterDiscountWithTax, 0.0)
-        XCTAssertEqual(calculatorViewModel.taxesAmountAfterDiscount, 0.0)
+        XCTAssertEqual(viewmodel.price, "")
+        XCTAssertEqual(viewmodel.priceAfterDiscount, 0.0)
+        XCTAssertEqual(viewmodel.priceAfterDiscountWithTax, 0.0)
+        XCTAssertEqual(viewmodel.taxesAmountAfterDiscount, 0.0)
         
     }
     
