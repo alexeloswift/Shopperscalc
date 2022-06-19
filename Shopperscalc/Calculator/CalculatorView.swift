@@ -11,7 +11,9 @@ struct CalculatorView: View {
     @EnvironmentObject var persistenceController: PersistenceController
     @StateObject var listViewmodel: ListVM
     @StateObject var viewmodel: CalculatorVM
-
+    
+    @State private var isPresented = false
+    
     let discountPercentages = 1..<101
     
     init(persistenceController: PersistenceController) {
@@ -33,7 +35,6 @@ struct CalculatorView: View {
                                 Text("$\(viewmodel.priceAfterDiscount, specifier: "%. 2f")")
                                     .accessibilityLabel("Full Price")
                                     .padding(1)
-                                
                             }
                         }
                         .modifier(NewTotalViewMod())
@@ -50,7 +51,8 @@ struct CalculatorView: View {
                                     ForEach(discountPercentages, id: \.self) {
                                         Text("\($0) %")
                                         
-                                    }}
+                                    }
+                                }
                             }
                             .modifier(SmallViewsMod())
                             
@@ -68,7 +70,6 @@ struct CalculatorView: View {
                                     .onTapGesture {
                                         viewmodel.reset()
                                     }
-                                
                             }
                             .padding(.bottom, 5)
                             .modifier(SmallViewsMod())
@@ -113,8 +114,7 @@ struct CalculatorView: View {
             }
             .navigationTitle("Shopperscalc")
             .padding(.top, 50)
-            .navigationBarTitleDisplayMode(.inline)
-
+            .navigationBarTitleDisplayMode(.inline)            
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
                     Button(action: {
@@ -123,33 +123,23 @@ struct CalculatorView: View {
                         Image(systemName: "keyboard.chevron.compact.down").modifier(AccentIcons())})
                 }
             }
-            
-            .navigationBarItems(trailing: Button(action: {
-                viewmodel.isPresented = true
-                
-                !viewmodel.price.isEmpty ? viewmodel.addListCalculation(
-                    fullPrice: viewmodel.price,
-                    newTotal: viewmodel.priceAfterDiscount,
-                    discountPercentage: Int16(viewmodel.discountPercentage)) : nil
-            }) {
-                Image(systemName: "plus.circle")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .modifier(AccentIcons())
-            })
-            .sheet(isPresented: $viewmodel.isPresented) {
+            .toolbar {
+                Button("Add to List") {
+                    isPresented = true
+                    
+                    !viewmodel.price.isEmpty ? viewmodel.addListCalculation(
+                        fullPrice: viewmodel.price,
+                        newTotal: viewmodel.priceAfterDiscount,
+                        discountPercentage: Int16(viewmodel.discountPercentage)) : nil
+                }
+                .tint(Color.yellow)
+            }
+            .sheet(isPresented: $isPresented) {
                 AddToListView(viewmodel: listViewmodel, calcViewmodel: viewmodel)
-                
             }
         }
     }
-    
-
-    
-
 }
-
-
 
 struct CalculatorView_Previews: PreviewProvider {
     static var previews: some View {

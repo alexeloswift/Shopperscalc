@@ -35,15 +35,16 @@ struct CreateNewListView: View {
                         viewmodel.addListName(listName: viewmodel.listName)
                         presentationMode.wrappedValue.dismiss()
                     }
-                    .foregroundColor(Color.black)
+                    .frame(width: 275, height: 60, alignment: .center)
+
                     .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(width: 275, height: 60, alignment: .center)
-                        .foregroundColor(.yellow)
-                        .shadow(color: Color.darkShadow, radius: 3, x: 2, y: 2)
-                        .shadow(color: Color.lightShadow, radius: 3, x: -2, y: -2)
-                        
-                    )
+                        RoundedRectangle(cornerRadius: 17)
+                            .stroke(Color.yellow, lineWidth: 3)
+                            .shadow(color: Color.darkShadow, radius: 3, x: 2, y: 2)
+                            .shadow(color: Color.lightShadow, radius: 3, x: -2, y: -2)
+                            .frame(width: 275, height: 60, alignment: .center)
+)
+                    
                 }
 
             }
@@ -65,15 +66,17 @@ struct CreateNewListView: View {
                     }
                 }
             }
+                .tint(Color.yellow)
+
         }
     }
 }
 
-//struct CreateNewListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CreateNewListView(, viewmodel: <#ListVM#>)
-//    }
-//}
+struct CreateNewListView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreateNewListView( viewmodel: ListVM(persistenceController: PersistenceController()))
+    }
+}
 
 extension Color {
     static let lightShadow = Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255)

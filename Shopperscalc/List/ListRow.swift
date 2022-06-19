@@ -38,13 +38,11 @@ struct ListRow: View {
                 .shadow(color: .yellow, radius: 0.7))
     }
     
-
-
-struct ListRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ListRow(listName: ListName.example)
+    struct ListRow_Previews: PreviewProvider {
+        static var previews: some View {
+            ListRow(listName: ListName.example)
+        }
     }
-}
 }
 
 
@@ -57,7 +55,6 @@ extension ListRow {
             self.listName = listName
         }
     }
-    
 }
 
 

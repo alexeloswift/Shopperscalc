@@ -10,6 +10,7 @@ import CoreData
 
 struct ListView: View {
     
+    @EnvironmentObject var persistenceController: PersistenceController
     @StateObject var viewmodel: ListVM
     
     init(persistenceController: PersistenceController) {
@@ -18,28 +19,30 @@ struct ListView: View {
     }
     
     var body: some View {
+        
         NavigationView {
             List {
                 ForEach(viewmodel.listNames) { item in
                     ListRow(listName: item)
                 }
-//                .onDelete { offsets in
-//                    viewmodel.deleteCalculation(at: offsets, from: viewmodel.listName)
-//        }
+                .onDelete { offsets in
+                    viewmodel.deleteList(at: offsets)
+                }
+                .listRowSeparator(.hidden)
             }
-            .listRowSeparator(.hidden)
             .navigationTitle("List")
             .navigationBarItems(trailing: Button("Create New List") {
                 viewmodel.isPresented = true
-            })
-            
+            }
+            )
+            .tint(Color.yellow)
+
             .sheet(isPresented: $viewmodel.isPresented) {
                 CreateNewListView(viewmodel: viewmodel)
                 
             }
         }
     }
-
 }
 
 struct ListView_Previews: PreviewProvider {

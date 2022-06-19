@@ -48,5 +48,4 @@ extension ModalListRow {
             self.listName = listName
         }
     }
-    
 }

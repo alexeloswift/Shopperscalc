@@ -53,7 +53,7 @@ class PersistenceController: ObservableObject {
         
         for x in 1...10 {
             let calculation = Calculation(context: viewcontext)
-            calculation.fullPrice = "$\(x).00"
+            calculation.fullPrice = "\(x).00"
             calculation.discountPercentage = 20
             calculation.newTotal = Double(x) - (Double(x) * 0.2)
             
@@ -89,19 +89,6 @@ class PersistenceController: ObservableObject {
     func delete(_ object: NSManagedObject) {
         container.viewContext.delete(object)
     }
-    
-    func deleteAll() {
-        let fetchRequest1: NSFetchRequest<NSFetchRequestResult> =
-            ListCalculation.fetchRequest()
-        let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
-        _ = try? container.viewContext.execute(batchDeleteRequest1)
-        
-        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> =
-            ListName.fetchRequest()
-        let batchDeleteRequest2 = NSBatchDeleteRequest(fetchRequest: fetchRequest2)
-        _ = try? container.viewContext.execute(batchDeleteRequest2)
-    }
-
 }
 
 

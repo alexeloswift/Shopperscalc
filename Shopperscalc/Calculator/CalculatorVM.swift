@@ -20,27 +20,24 @@ class CalculatorVM: NSObject, ObservableObject, NSFetchedResultsControllerDelega
     @Published var priceAfterDiscount: Double = 0.0
     @Published var taxesAmountAfterDiscount: Double = 0.0
     
-    @Published var isPresented: Bool = false
-    
+    //    Arrays Holding Persisted Data
     @Published var listNames = [ListName]()
     @Published var calculation = [Calculation]()
-
     
     let persistenceController: PersistenceController
-    let listNameController: NSFetchedResultsController <ListName>
-    let calculationController: NSFetchedResultsController<Calculation>
-
+    var listNameController: NSFetchedResultsController <ListName>
+    var calculationController: NSFetchedResultsController<Calculation>
+    
     
     init(persistenceController: PersistenceController) {
         self.persistenceController = persistenceController
         
         let calculationRequest: NSFetchRequest<Calculation> = Calculation.fetchRequest()
-        calculationRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Calculation.fullPrice, ascending: false)]
+        calculationRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Calculation.date, ascending: true)]
         calculationController = NSFetchedResultsController(fetchRequest: calculationRequest,
                                                            managedObjectContext: persistenceController.container.viewContext,
                                                            sectionNameKeyPath: nil,
                                                            cacheName:  nil)
-        
         
         let request: NSFetchRequest<ListName> = ListName.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \ListName.date, ascending: false)]
@@ -60,57 +57,13 @@ class CalculatorVM: NSObject, ObservableObject, NSFetchedResultsControllerDelega
             print("Failed fetch")
         }
     }
-
-
     
-    func calculateNewTotal(price: String, discountPercentage: Int) -> Double {
-        
-        let priceAsDouble = Double(price) ?? 0.0
-        let discountPercentageAsDouble = Double(discountPercentage)
-        
-        let amountOff = priceAsDouble / 100 * discountPercentageAsDouble
-        let priceCalculatedWithoutTax = priceAsDouble - amountOff
-        
-        return priceCalculatedWithoutTax
-    }
-    
-    func calculateTaxAmount(price: String, discountPercentage: Int, taxPercentage: Double) -> Double {
-        
-        let priceAsDouble = Double(price) ?? 0.0
-        let discountPercentageAsDouble = Double(discountPercentage)
-        
-        let amountOff = priceAsDouble / 100 * discountPercentageAsDouble
-        let taxCalculated = (priceAsDouble - amountOff) * taxPercentage
-        
-        return taxCalculated
-    }
-    
-    func calculateNewTotalWithTax(price: String, discountPercentage: Int, taxPercentage: Double) -> Double {
-        
-        let priceAsDouble = Double(price) ?? 0.0
-        let discountPercentageAsDouble = Double(discountPercentage)
-        
-        let amountOff = priceAsDouble / 100 * discountPercentageAsDouble
-        let taxCalculated = (priceAsDouble - amountOff) * taxPercentage
-        let priceCalculatedWithoutTax = priceAsDouble - amountOff
-        let priceCalculatedWithTax = priceCalculatedWithoutTax + taxCalculated
-        
-        return priceCalculatedWithTax
-    }
-    
-    func presentCalculation() {
-        
-        priceAfterDiscount = calculateNewTotal(price: price, discountPercentage: discountPercentage)
-        priceAfterDiscountWithTax = calculateNewTotalWithTax(price: price, discountPercentage: discountPercentage, taxPercentage: taxPercentage)
-        taxesAmountAfterDiscount = calculateTaxAmount(price: price, discountPercentage: discountPercentage, taxPercentage: taxPercentage)
-    }
-    
-    func reset() {
-        
-        price = ""
-        priceAfterDiscount = 0.0
-        priceAfterDiscountWithTax = 0.0
-        taxesAmountAfterDiscount = 0.0
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController <NSFetchRequestResult>) {
+        if let newCalculations = controller.fetchedObjects as? [Calculation] {
+            calculation = newCalculations
+        } else if let newListNames = controller.fetchedObjects as? [ListName] {
+            listNames = newListNames
+        }
     }
     
     func addListCalculation(fullPrice: String, newTotal: Double, discountPercentage: Int16) {
@@ -133,25 +86,69 @@ class CalculatorVM: NSObject, ObservableObject, NSFetchedResultsControllerDelega
         persistenceController.save()
     }
     
-//    func deleteAll() {
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Calculation.fetchRequest()
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//
-//        let persistentContainer = PersistenceController.shared.container
-//
-//        do {
-//            try persistentContainer.viewContext.executeAndMergeChanges(using: deleteRequest)
-//        } catch let error as NSError {
-//            print(error)
-//        }
-//    }
-
-//    func deleteCalculation(at offsets: IndexSet) {
-//        offsets.forEach { index in
-//            let calculation = self.calculations[index]
-//            self.managedObjectContext.delete(calculation)
-//        }
-//        persistenceController.save()
-//    }
-
+    func deleteCalculation(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let moc = persistenceController.container.viewContext
+            let calculation = self.calculation[index]
+            moc.delete(calculation)
+        }
+        persistenceController.save()
+    }
+    
+    func deleteAllCalculations() {
+        let fetchRequest: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Calculation")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        let moc = persistenceController.container.viewContext
+        
+        do {
+            try moc.executeAndMergeChanges(using: batchDeleteRequest)
+        } catch {
+            print("could not delete  calculations and save")
+        }
+    }
+    
+    func calculateNewTotal(price: String, discountPercentage: Int) -> Double {
+        let priceAsDouble = Double(price) ?? 0.0
+        let discountPercentageAsDouble = Double(discountPercentage)
+        
+        let amountOff = priceAsDouble / 100 * discountPercentageAsDouble
+        let priceCalculatedWithoutTax = priceAsDouble - amountOff
+        
+        return priceCalculatedWithoutTax
+    }
+    
+    func calculateTaxAmount(price: String, discountPercentage: Int, taxPercentage: Double) -> Double {
+        let priceAsDouble = Double(price) ?? 0.0
+        let discountPercentageAsDouble = Double(discountPercentage)
+        
+        let amountOff = priceAsDouble / 100 * discountPercentageAsDouble
+        let taxCalculated = (priceAsDouble - amountOff) * taxPercentage
+        
+        return taxCalculated
+    }
+    
+    func calculateNewTotalWithTax(price: String, discountPercentage: Int, taxPercentage: Double) -> Double {
+        let priceAsDouble = Double(price) ?? 0.0
+        let discountPercentageAsDouble = Double(discountPercentage)
+        
+        let amountOff = priceAsDouble / 100 * discountPercentageAsDouble
+        let taxCalculated = (priceAsDouble - amountOff) * taxPercentage
+        let priceCalculatedWithoutTax = priceAsDouble - amountOff
+        let priceCalculatedWithTax = priceCalculatedWithoutTax + taxCalculated
+        
+        return priceCalculatedWithTax
+    }
+    
+    func presentCalculation() {
+        priceAfterDiscount = calculateNewTotal(price: price, discountPercentage: discountPercentage)
+        priceAfterDiscountWithTax = calculateNewTotalWithTax(price: price, discountPercentage: discountPercentage, taxPercentage: taxPercentage)
+        taxesAmountAfterDiscount = calculateTaxAmount(price: price, discountPercentage: discountPercentage, taxPercentage: taxPercentage)
+    }
+    
+    func reset() {
+        price = ""
+        priceAfterDiscount = 0.0
+        priceAfterDiscountWithTax = 0.0
+        taxesAmountAfterDiscount = 0.0
+    }
 }

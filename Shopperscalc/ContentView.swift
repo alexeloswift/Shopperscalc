@@ -8,35 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    
     @EnvironmentObject var persistenceController: PersistenceController
     
-//    @State private var num = 0
-        
     var body: some View {
-        
-//        FloatingTabbar(selected: $num)
         TabView {
             CalculatorView(persistenceController: persistenceController)
                 .tabItem {
-                    Label("Calculator", systemImage: "list.dash")
+                    Label("Calculator", systemImage: "plus.slash.minus")
                 }
-            ListView(persistenceController: persistenceController)
-                .tabItem {
-                    Label("List", systemImage: "square.and.pencil")
-                }
+                .tabViewStyle(.automatic)
             HistoryView(persistenceController: persistenceController)
                 .tabItem {
                     Label("History", systemImage: "clock")
                 }
-
+            ListView(persistenceController: persistenceController)
+                .tabItem {
+                    Label("List", systemImage: "list.dash")
+                }
+            }
         }
     }
-}
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//            .environmentObject(CalculatorVM())
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(PersistenceController())
+    }
+}

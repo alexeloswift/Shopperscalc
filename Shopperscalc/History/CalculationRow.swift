@@ -15,8 +15,8 @@ struct CalculationRow: View {
         
         VStack(alignment: .center) {
             Text("New Total")
-                Text("$\(calculation.newTotal, specifier: "%. 2f")")
-            .font(.title2)
+            Text("$\(calculation.newTotal, specifier: "%. 2f")")
+                .font(.title2)
             
             HStack(alignment: .center) {
                 VStack {

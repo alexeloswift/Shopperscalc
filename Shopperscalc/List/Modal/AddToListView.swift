@@ -16,6 +16,36 @@ struct AddToListView: View {
 
     var body: some View {
         NavigationView {
+
+        if viewmodel.listNames.isEmpty {
+            
+        ScrollView {
+            VStack {
+
+                Image("shoppingcalcpic")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100, alignment: .center)
+                Spacer()
+                Text("You havent created any list yet 🤭")
+                    .multilineTextAlignment(.center)
+                    .padding()
+                Spacer()
+            }
+            .padding(.top, 100)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel", role: .destructive) {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    .tint(Color.yellow)
+
+                }
+            }
+
+        }
+        
+    } else {
             VStack {
                 List {
                     ForEach(viewmodel.listNames) { item in
@@ -23,13 +53,13 @@ struct AddToListView: View {
                             .onTapGesture {
                                 !calcViewmodel.price.isEmpty ?
                                 viewmodel.addListCalculationToList(to: item,
-                                                         fullPrice: calcViewmodel.price,
-                                                         newTotal: calcViewmodel.priceAfterDiscount,
-                                                         discountPercentage: Int16(calcViewmodel.discountPercentage)) : print("items not saved")
-
+                                                                   fullPrice: calcViewmodel.price,
+                                                                   newTotal: calcViewmodel.priceAfterDiscount,
+                                                                   discountPercentage: Int16(calcViewmodel.discountPercentage)) : print("items not saved")
+                                
                                 presentationMode.wrappedValue.dismiss()
                                 
-                        }
+                            }}
                     }
                 }
                 .listStyle(.plain)
@@ -41,27 +71,20 @@ struct AddToListView: View {
                         Button("Cancel", role: .destructive) {
                             presentationMode.wrappedValue.dismiss()
                         }
+                        .tint(Color.yellow)
+
                     }
-                }
-                
-                Button("Create New List") {
-                    viewmodel.isPresented = true
-                }
-                .offset(x: 100)
-                .padding()
-                .sheet(isPresented: $viewmodel.isPresented) {
-                    CreateNewListView(viewmodel: viewmodel)
                 }
             }
         }
     }
 }
 
-//struct AddToListView_Previews: PreviewProvider {
+struct AddToListView_Previews: PreviewProvider {
 
-//    static var previews: some View {
-//        AddToListView(presentationMode: , viewmodel: ListVM.init(persistenceController: PersistenceController.preview), calcViewmodel: CalculatorVM(persistenceController: PersistenceController.preview))
-//    }
-//}
+    static var previews: some View {
+        AddToListView(viewmodel: ListVM(persistenceController: PersistenceController()), calcViewmodel: CalculatorVM(persistenceController: PersistenceController()))
+    }
+}
 
 

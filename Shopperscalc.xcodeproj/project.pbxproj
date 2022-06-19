@@ -15,7 +15,6 @@
 		FD4372EA28138FD900B7D10D /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4372E928138FD900B7D10D /* HistoryView.swift */; };
 		FD4372F12814580A00B7D10D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4372F02814580A00B7D10D /* PersistenceController.swift */; };
 		FD4372F528145C4800B7D10D /* CalculationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4372F428145C4800B7D10D /* CalculationRow.swift */; };
-		FD4BAD54283C59AE0089B0F5 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4BAD53283C59AE0089B0F5 /* TabbarView.swift */; };
 		FD4D9E8D27F6ABAC00941EA5 /* ShopperscalcApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9E8C27F6ABAC00941EA5 /* ShopperscalcApp.swift */; };
 		FD4D9E8F27F6ABAC00941EA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */; };
 		FD4D9E9127F6ABAD00941EA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD4D9E9027F6ABAD00941EA5 /* Assets.xcassets */; };
@@ -68,7 +67,6 @@
 		FD4372E928138FD900B7D10D /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		FD4372F02814580A00B7D10D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		FD4372F428145C4800B7D10D /* CalculationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationRow.swift; sourceTree = "<group>"; };
-		FD4BAD53283C59AE0089B0F5 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		FD4D9E8927F6ABAC00941EA5 /* Shopperscalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopperscalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4D9E8C27F6ABAC00941EA5 /* ShopperscalcApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperscalcApp.swift; sourceTree = "<group>"; };
 		FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,6 +76,7 @@
 		FD4D9EA327F6ABAD00941EA5 /* ShopperscalcUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopperscalcUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4D9EA727F6ABAD00941EA5 /* ShopperscalcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperscalcUITests.swift; sourceTree = "<group>"; };
 		FD4D9EA927F6ABAD00941EA5 /* ShopperscalcUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperscalcUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FD900077285EC87D00E03DF6 /* Calculations 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Calculations 3.xcdatamodel"; sourceTree = "<group>"; };
 		FD9C1CBF281BAE56003EA990 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToListView.swift; sourceTree = "<group>"; };
 		FD9C1CC8281C7061003EA990 /* ListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVM.swift; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		FDB9E90B2835F81F00AECA5C /* ListCalculation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListCalculation+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		FDB9E90C2835F81F00AECA5C /* ListName+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListName+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		FDB9E90D2835F81F00AECA5C /* ListName+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListName+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		FDE2812D284D55D100FD1157 /* Calculations 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Calculations 2.xcdatamodel"; sourceTree = "<group>"; };
 		FDED2B7F27FCB8300049953C /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		FDED2B8127FCB84B0049953C /* CalculatorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorVM.swift; sourceTree = "<group>"; };
 		FDED2B8327FCB89D0049953C /* NewTotalViewMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTotalViewMod.swift; sourceTree = "<group>"; };
@@ -182,7 +182,6 @@
 				FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */,
 				FD4D9E8C27F6ABAC00941EA5 /* ShopperscalcApp.swift */,
 				FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */,
-				FD4BAD53283C59AE0089B0F5 /* TabbarView.swift */,
 				FD9C1CC5281BB206003EA990 /* Calculator */,
 				FD9C1CC4281BB1ED003EA990 /* History */,
 				FD9C1CC3281BB1D2003EA990 /* List */,
@@ -414,7 +413,6 @@
 				FD4372EA28138FD900B7D10D /* HistoryView.swift in Sources */,
 				FD9C1CCF281DE105003EA990 /* ListCalculationRow.swift in Sources */,
 				FD4372F12814580A00B7D10D /* PersistenceController.swift in Sources */,
-				FD4BAD54283C59AE0089B0F5 /* TabbarView.swift in Sources */,
 				FD9C1CCD281CF684003EA990 /* ListCalculationsView.swift in Sources */,
 				FDB9E90F2835F81F00AECA5C /* ListCalculation+CoreDataProperties.swift in Sources */,
 				FDB9E9112835F81F00AECA5C /* ListName+CoreDataProperties.swift in Sources */,
@@ -753,9 +751,11 @@
 		FDB9E9062835F57C00AECA5C /* Calculations.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				FD900077285EC87D00E03DF6 /* Calculations 3.xcdatamodel */,
+				FDE2812D284D55D100FD1157 /* Calculations 2.xcdatamodel */,
 				FDB9E9072835F57C00AECA5C /* Calculations1.xcdatamodel */,
 			);
-			currentVersion = FDB9E9072835F57C00AECA5C /* Calculations1.xcdatamodel */;
+			currentVersion = FD900077285EC87D00E03DF6 /* Calculations 3.xcdatamodel */;
 			path = Calculations.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

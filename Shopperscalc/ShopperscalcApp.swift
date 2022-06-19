@@ -15,15 +15,12 @@ struct ShopperscalcApp: App {
     init() {
         let persistenceController = PersistenceController()
         _persistenceController = StateObject(wrappedValue: persistenceController)
-        
-        
     }
     
     var body: some Scene {
         WindowGroup {
             let _ = UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(persistenceController)
         }
     }

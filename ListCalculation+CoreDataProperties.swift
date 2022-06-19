@@ -29,7 +29,7 @@ extension ListCalculation {
         let controller = PersistenceController.preview
         let viewContext = controller.container.viewContext
         let listCalculation = ListCalculation(context: viewContext)
-        listCalculation.fullPrice = "$0.00"
+        listCalculation.fullPrice = "0.00"
         listCalculation.discountPercentage = 20
         listCalculation.newTotal = 0.0
         

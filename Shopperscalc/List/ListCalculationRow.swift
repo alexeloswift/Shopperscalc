@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ListCalculationRow: View {
     
@@ -13,10 +14,12 @@ struct ListCalculationRow: View {
     @StateObject var viewmodel: ViewModel
     
     init(listCalculation: ListCalculation) {
+        
+        self.listCalculation = listCalculation
+
         let viewmodel = ViewModel(listCalculation: listCalculation)
         _viewmodel = StateObject(wrappedValue: viewmodel)
         
-        self.listCalculation = listCalculation
     }
     
     var body: some View {
@@ -60,12 +63,12 @@ struct ListCalculationRow: View {
 extension ListCalculationRow {
     
     class ViewModel: ObservableObject {
-        let listCalculation: ListCalculation
+        var listCalculation: ListCalculation
+
         
         init(listCalculation: ListCalculation) {
             self.listCalculation = listCalculation
         }
     }
-    
 }
 
