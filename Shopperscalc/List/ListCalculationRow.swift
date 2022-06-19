@@ -16,7 +16,7 @@ struct ListCalculationRow: View {
     init(listCalculation: ListCalculation) {
         
         self.listCalculation = listCalculation
-
+        
         let viewmodel = ViewModel(listCalculation: listCalculation)
         _viewmodel = StateObject(wrappedValue: viewmodel)
         
@@ -45,13 +45,10 @@ struct ListCalculationRow: View {
                         Text(listCalculation.unwrappedFullPrice)
                     }
                     .foregroundColor(Color.red)
-                    
                 }
             }
         }
     }
-    
-
     
     struct ListCalculationRow_Previews: PreviewProvider {
         static var previews: some View {
@@ -61,10 +58,8 @@ struct ListCalculationRow: View {
 }
 
 extension ListCalculationRow {
-    
     class ViewModel: ObservableObject {
         var listCalculation: ListCalculation
-
         
         init(listCalculation: ListCalculation) {
             self.listCalculation = listCalculation

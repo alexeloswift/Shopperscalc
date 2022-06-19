@@ -11,11 +11,11 @@ import CoreData
 
 
 extension ListCalculation {
-
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ListCalculation> {
         return NSFetchRequest<ListCalculation>(entityName: "ListCalculation")
     }
-
+    
     @NSManaged public var discountPercentage: Int16
     @NSManaged public var newTotal: Double
     @NSManaged public var fullPrice: String?
@@ -39,21 +39,21 @@ extension ListCalculation {
 
 // MARK: Generated accessors for listName
 extension ListCalculation {
-
+    
     @objc(addListNameObject:)
     @NSManaged public func addToListName(_ value: ListCalculation)
-
+    
     @objc(removeListNameObject:)
     @NSManaged public func removeFromListName(_ value: ListCalculation)
-
+    
     @objc(addListName:)
     @NSManaged public func addToListName(_ values: NSSet)
-
+    
     @objc(removeListName:)
     @NSManaged public func removeFromListName(_ values: NSSet)
-
+    
 }
 
 extension ListCalculation : Identifiable {
-
+    
 }

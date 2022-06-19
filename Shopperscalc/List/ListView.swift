@@ -33,13 +33,10 @@ struct ListView: View {
             .navigationTitle("List")
             .navigationBarItems(trailing: Button("Create New List") {
                 viewmodel.isPresented = true
-            }
-            )
+            })
             .tint(Color.yellow)
-
             .sheet(isPresented: $viewmodel.isPresented) {
                 CreateNewListView(viewmodel: viewmodel)
-                
             }
         }
     }

@@ -17,8 +17,8 @@ struct ModalListRow: View {
                 VStack(alignment:.leading) {
                     Text(listName.unwrappedListTitle)
                         .font(.system(size: 20, weight: .bold))
-                            }
-
+                }
+                
                 Spacer()
                 
                 VStack (alignment:.leading){

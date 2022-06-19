@@ -14,16 +14,9 @@ class PersistenceController: ObservableObject {
     let container: NSPersistentContainer
     
     // A test configuration for SwiftUI previews
-    
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Calculations")
-        
-//        /*add necessary support for migration*/
-//         let description = NSPersistentStoreDescription()
-//         description.shouldMigrateStoreAutomatically = true
-//         description.shouldInferMappingModelAutomatically = true
-//         container.persistentStoreDescriptions =  [description]
-//         /*add necessary support for migration*/
+
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -31,7 +24,7 @@ class PersistenceController: ObservableObject {
             if let error = error {
                 fatalError("Error: \(error.localizedDescription)")
             }
-            
+            // Handles changes & merges to updated versions of a data model using light migration
             self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         }
     }
@@ -44,7 +37,7 @@ class PersistenceController: ObservableObject {
         } catch {
             fatalError("Fatal error creating preview \(error.localizedDescription)")
         }
-
+        
         return persistenceController
     }()
     
@@ -62,13 +55,13 @@ class PersistenceController: ObservableObject {
             let listName = ListName(context: viewcontext)
             listName.listTitle = "Store \(i)"
             listName.date = Date()
-        
-        
-        for j in 1...10 {
-            let listCalculation = ListCalculation(context: viewcontext)
-            listCalculation.fullPrice = "$\(j).00"
-            listCalculation.discountPercentage = 20
-            listCalculation.newTotal = Double(j) - (Double(j) * 0.2)
+            
+            
+            for j in 1...10 {
+                let listCalculation = ListCalculation(context: viewcontext)
+                listCalculation.fullPrice = "$\(j).00"
+                listCalculation.discountPercentage = 20
+                listCalculation.newTotal = Double(j) - (Double(j) * 0.2)
             }
         }
         try viewcontext.save()

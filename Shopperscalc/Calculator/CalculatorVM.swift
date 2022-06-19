@@ -103,7 +103,7 @@ class CalculatorVM: NSObject, ObservableObject, NSFetchedResultsControllerDelega
         do {
             try moc.executeAndMergeChanges(using: batchDeleteRequest)
         } catch {
-            print("could not delete  calculations and save")
+            print("could not delete calculations and save")
         }
     }
     

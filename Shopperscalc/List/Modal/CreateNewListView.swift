@@ -19,14 +19,13 @@ struct CreateNewListView: View {
                 
                 VStack {
                     TextField("List Name", text: $viewmodel.listName)
-                    
                         .padding()
                         .foregroundColor(.neumorphictextColor)
                         .background(Color.background)
                         .cornerRadius(6)
                         .shadow(color: Color.darkShadow, radius: 3, x: 2, y: 2)
                         .shadow(color: Color.lightShadow, radius: 3, x: -2, y: -2)
-                    .padding()
+                        .padding()
                     
                     DatePicker("", selection: $viewmodel.date)
                         .hidden()
@@ -35,39 +34,32 @@ struct CreateNewListView: View {
                         viewmodel.addListName(listName: viewmodel.listName)
                         presentationMode.wrappedValue.dismiss()
                     }
-                    .frame(width: 275, height: 60, alignment: .center)
-
+                    .frame(width: 200, height: 60, alignment: .center)
+                    .foregroundColor(.black)
                     .background(
                         RoundedRectangle(cornerRadius: 17)
-                            .stroke(Color.yellow, lineWidth: 3)
-                            .shadow(color: Color.darkShadow, radius: 3, x: 2, y: 2)
-                            .shadow(color: Color.lightShadow, radius: 3, x: -2, y: -2)
-                            .frame(width: 275, height: 60, alignment: .center)
-)
-                    
+                            .stroke(Color.yellow, lineWidth: 3))
                 }
-
+                .onAppear {
+                    viewmodel.resetListName()
+                }
             }
-            
-
-                .navigationTitle("Save List")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button("Cancel", role: .destructive) {
-                            presentationMode.wrappedValue.dismiss()
-                        }
+            .navigationTitle("Save List")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel", role: .destructive) {
+                        presentationMode.wrappedValue.dismiss()
                     }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Save", role: .none) {
-                            viewmodel.addListName(listName: viewmodel.listName)
-                            presentationMode.wrappedValue.dismiss()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Save", role: .none) {
+                        viewmodel.addListName(listName: viewmodel.listName)
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
-                .tint(Color.yellow)
-
+            .tint(Color.yellow)
         }
     }
 }

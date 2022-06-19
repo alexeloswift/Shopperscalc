@@ -14,7 +14,7 @@ struct ListCalculationsView: View {
     @ObservedObject var listViewModel = ListVM(persistenceController: PersistenceController())
     @State var isPresented = false
     @ObservedObject var listName: ListName
-
+    
     
     init(listName: ListName) {
         self.listName = listName
@@ -23,9 +23,7 @@ struct ListCalculationsView: View {
     }
     
     var body: some View {
-        
         if viewmodel.listName.listCalculationsCore.isEmpty {
-
             ScrollView {
                 VStack {
                     Image("shoppingcalcpic")
@@ -39,7 +37,6 @@ struct ListCalculationsView: View {
                     Spacer()
                 }
             }
-            
         } else {
             List {
                 ForEach(viewmodel.listName.listCalculationsCore, id: \.fullPrice) { item in
@@ -52,24 +49,19 @@ struct ListCalculationsView: View {
                     RoundedRectangle(cornerRadius: 10 , style: .continuous)
                         .stroke(.yellow, lineWidth: 0.7)
                         .shadow(color: .yellow, radius: 0.7))
-                
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
             .navigationTitle(listName.unwrappedListTitle)
         }
     }
-    
 }
 
-//struct ListCalculationsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListCalculationsView(listName:)
-//    }
-//}
-
+struct ListCalculationsView_Previews: PreviewProvider {
+    static var previews: some View {
+        ListCalculationsView(listName: ListName.example)
+    }
+}
 
 extension ListCalculationsView {
-    
     class ViewModel: ObservableObject {
         let listName: ListName
         let persistenceController: PersistenceController
@@ -78,7 +70,5 @@ extension ListCalculationsView {
             self.listName = listName
             self.persistenceController = persistenceController
         }
-        
     }
-    
 }
