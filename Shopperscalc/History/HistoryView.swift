@@ -7,7 +7,19 @@
 
 import SwiftUI
 
+enum AnimationState {
+    case normal
+    case compress
+    case expand
+}
+
+
+
 struct HistoryView: View {
+    
+    @State private var animationState: AnimationState = .normal
+    
+    
     
     @EnvironmentObject var persistenceController: PersistenceController
     @StateObject var viewmodel: CalculatorVM
@@ -20,16 +32,46 @@ struct HistoryView: View {
     }
     
     var body: some View {
-        NavigationView {
-            if viewmodel.calculation.isEmpty {
+        if viewmodel.calculation.isEmpty {
+            ZStack {
+                Color.gray
+                    .ignoresSafeArea()
                 VStack {
-                    Text("You haven't made any calculations yet.")
-                    Text("🫠")
+                    Image("shoppingcalcpic")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .scaleEffect(calculate())
+                    Text("There are no calculations to display yet.")
+                    Text("🙃")
+                        .font(.title)
+
+                    Text("Once you make a calculation, it will be displayed here.")
+                    Spacer()
+                    
                 }
-                .font(.title3)
-                .modifier(AccentIcons())
                 .multilineTextAlignment(.center)
-            } else {
+//                .padding(.top, 50)
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    withAnimation(.spring()) {
+                        animationState = .expand
+                        DispatchQueue.main.asyncAfter (deadline: .now() + 0.5) {
+                            withAnimation(.spring()) {
+                                animationState = .compress
+                                DispatchQueue.main.asyncAfter (deadline: .now() + 0.3) {
+                                    withAnimation(.spring()) {
+                                        animationState = .normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            NavigationView {
+                
                 List {
                     ForEach(viewmodel.calculation, id: \.fullPrice) {
                         CalculationRow(calculation: $0)
@@ -63,6 +105,17 @@ struct HistoryView: View {
                     }
                 )
             }
+        }
+    }
+    
+    func calculate() -> Double {
+        switch animationState{
+            case .normal:
+                return 0.35
+            case .compress:
+                return 0.18
+            case .expand:
+                return 0.8
         }
     }
 }

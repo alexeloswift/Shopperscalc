@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddToListView: View {
+    @State private var animationState: AnimationState = .normal
+    
     
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewmodel: ListVM
@@ -16,25 +18,47 @@ struct AddToListView: View {
     var body: some View {
         NavigationView {
             if viewmodel.listNames.isEmpty {
-                ScrollView {
+                ZStack {
+                    Color.gray
+                        .ignoresSafeArea()
                     VStack {
                         Image("shoppingcalcpic")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 100, height: 100, alignment: .center)
-                        Spacer()
-                        Text("You havent created any list yet 🤭")
+                            .scaleEffect(calculate())
+                        
+                        Text("You havent created any list yet.")
+                        Text("😱")
+                            .font(.title)
+                        Text("Open the list tab, from there you will be able to create a list. Once you have a list created you will be able to come back to the calculations tab and add calculations to any list.")
                             .multilineTextAlignment(.center)
                             .padding()
-                        Spacer()
                     }
-                    .padding(.top, 100)
+                    .padding(.bottom, 100)
+                    
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
                             Button("Cancel", role: .destructive) {
                                 presentationMode.wrappedValue.dismiss()
                             }
                             .tint(Color.yellow)
+                        }
+                    }
+                }
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        withAnimation(.spring()) {
+                            animationState = .expand
+                            DispatchQueue.main.asyncAfter (deadline: .now() + 0.5) {
+                                withAnimation(.spring()) {
+                                    animationState = .compress
+                                    DispatchQueue.main.asyncAfter (deadline: .now() + 0.3) {
+                                        withAnimation(.spring()) {
+                                            animationState = .normal
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -46,30 +70,41 @@ struct AddToListView: View {
                                 .onTapGesture {
                                     !calcViewmodel.price.isEmpty ?
                                     viewmodel.addListCalculationToList(to: item,
-                                        fullPrice: calcViewmodel.price,
-                                        newTotal: calcViewmodel.priceAfterDiscount,
-                                        discountPercentage: Int16(calcViewmodel.discountPercentage)) : print("items not saved")
+                                                                       fullPrice: calcViewmodel.price,
+                                                                       newTotal: calcViewmodel.priceAfterDiscount,
+                                                                       discountPercentage: Int16(calcViewmodel.discountPercentage)) : print("items not saved")
                                     
                                     presentationMode.wrappedValue.dismiss()
                                 }
-                            }
+                        }
                         .listRowSeparator(.hidden)
-                        }
                     }
-                    .navigationTitle("Save To List")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button("Cancel", role: .destructive) {
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                            .tint(Color.yellow)
+                }
+                .navigationTitle("Save To List")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Cancel", role: .destructive) {
+                            presentationMode.wrappedValue.dismiss()
                         }
+                        .tint(Color.yellow)
                     }
                 }
             }
         }
     }
+    
+    func calculate() -> Double {
+        switch animationState{
+            case .normal:
+                return 0.35
+            case .compress:
+                return 0.18
+            case .expand:
+                return 0.8
+        }
+    }
+}
 
 struct AddToListView_Previews: PreviewProvider {
     

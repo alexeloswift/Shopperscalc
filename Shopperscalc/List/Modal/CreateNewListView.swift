@@ -23,8 +23,6 @@ struct CreateNewListView: View {
                         .foregroundColor(.neumorphictextColor)
                         .background(Color.background)
                         .cornerRadius(6)
-                        .shadow(color: Color.darkShadow, radius: 3, x: 2, y: 2)
-                        .shadow(color: Color.lightShadow, radius: 3, x: -2, y: -2)
                         .padding()
                     
                     DatePicker("", selection: $viewmodel.date)
@@ -34,11 +32,9 @@ struct CreateNewListView: View {
                         viewmodel.addListName(listName: viewmodel.listName)
                         presentationMode.wrappedValue.dismiss()
                     }
-                    .frame(width: 200, height: 60, alignment: .center)
+                    .font(.title2)
+                    .buttonStyle(.borderedProminent)
                     .foregroundColor(.black)
-                    .background(
-                        RoundedRectangle(cornerRadius: 17)
-                            .stroke(Color.yellow, lineWidth: 3))
                 }
                 .onAppear {
                     viewmodel.resetListName()

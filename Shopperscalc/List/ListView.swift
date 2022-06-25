@@ -21,14 +21,27 @@ struct ListView: View {
     var body: some View {
         
         NavigationView {
+
             List {
-                ForEach(viewmodel.listNames) { item in
-                    ListRow(listName: item)
+                if viewmodel.listNames.isEmpty {
+                    HStack {
+                        Image("shoppingcalcpic")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 50, height: 50, alignment: .center)
+                        Text("Once you create a list it will be displayed here.")
+                    }
+                    .multilineTextAlignment(.center)
+                } else {
+
+                    ForEach(viewmodel.listNames) { item in
+                        ListRow(listName: item)
+                    }
+                    .onDelete { offsets in
+                        viewmodel.deleteList(at: offsets)
+                    }
+                    .listRowSeparator(.hidden)
                 }
-                .onDelete { offsets in
-                    viewmodel.deleteList(at: offsets)
-                }
-                .listRowSeparator(.hidden)
             }
             .navigationTitle("List")
             .navigationBarItems(trailing: Button("Create New List") {

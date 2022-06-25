@@ -11,7 +11,6 @@ struct CalculatorView: View {
     @EnvironmentObject var persistenceController: PersistenceController
     @StateObject var listViewmodel: ListVM
     @StateObject var viewmodel: CalculatorVM
-    
     @State private var isPresented = false
     
     let discountPercentages = 1..<101
@@ -29,8 +28,13 @@ struct CalculatorView: View {
             GeometryReader { geo in
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack {
+                        Image("shoppingcalcpic")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 50, height: 50, alignment: .center)
                         VStack {
                             VStack {
+
                                 Text("New Total")
                                 Text("$\(viewmodel.priceAfterDiscount, specifier: "%. 2f")")
                                     .accessibilityLabel("Full Price")
