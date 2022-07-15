@@ -7,24 +7,14 @@
 
 import SwiftUI
 
-enum AnimationState {
-    case normal
-    case compress
-    case expand
-}
-
-
-
 struct HistoryView: View {
     
     @State private var animationState: AnimationState = .normal
-    
-    
+    @State var isPresented = false
     
     @EnvironmentObject var persistenceController: PersistenceController
     @StateObject var viewmodel: CalculatorVM
     
-    @State var isPresented = false
     
     init(persistenceController: PersistenceController) {
         let viewmodel = CalculatorVM(persistenceController: persistenceController)
@@ -37,20 +27,19 @@ struct HistoryView: View {
                 Color.gray
                     .ignoresSafeArea()
                 VStack {
-                    Image("shoppingcalcpic")
+                    Image("error")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .scaleEffect(calculate())
                     Text("There are no calculations to display yet.")
                     Text("🙃")
                         .font(.title)
-
+                    
                     Text("Once you make a calculation, it will be displayed here.")
                     Spacer()
                     
                 }
                 .multilineTextAlignment(.center)
-//                .padding(.top, 50)
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

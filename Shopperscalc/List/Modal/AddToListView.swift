@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct AddToListView: View {
+    
     @State private var animationState: AnimationState = .normal
-    
-    
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewmodel: ListVM
     @ObservedObject var calcViewmodel: CalculatorVM
@@ -22,14 +21,15 @@ struct AddToListView: View {
                     Color.gray
                         .ignoresSafeArea()
                     VStack {
-                        Image("shoppingcalcpic")
+                        Image("error")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .scaleEffect(calculate())
                         
-                        Text("You havent created any list yet.")
+                        Text("YOU HAVENT CREATED ANY LISTS YET.")
+                            .padding()
                         Text("😱")
-                            .font(.title)
+                            .scaleEffect(calculateEmoji())
                         Text("Open the list tab, from there you will be able to create a list. Once you have a list created you will be able to come back to the calculations tab and add calculations to any list.")
                             .multilineTextAlignment(.center)
                             .padding()
@@ -102,6 +102,17 @@ struct AddToListView: View {
                 return 0.18
             case .expand:
                 return 0.8
+        }
+    }
+    
+    func calculateEmoji() -> Double {
+        switch animationState{
+            case .normal:
+                return 2
+            case .compress:
+                return 0.5
+            case .expand:
+                return 3.5
         }
     }
 }
