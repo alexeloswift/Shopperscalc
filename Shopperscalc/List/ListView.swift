@@ -10,7 +10,6 @@ import CoreData
 
 struct ListView: View {
     
-    @EnvironmentObject var persistenceController: PersistenceController
     @StateObject var viewmodel: ListVM
     
     init(persistenceController: PersistenceController) {
@@ -21,7 +20,6 @@ struct ListView: View {
     var body: some View {
         
         NavigationView {
-
             List {
                 if viewmodel.listNames.isEmpty {
                     HStack {

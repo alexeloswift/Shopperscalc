@@ -51,10 +51,9 @@ struct CalculatorView: View {
                                 Divider()
                                     .frame(width: 100)
                                 
-                                Picker("Discount Percentage", selection: $viewmodel.discountPercentage) {
+                                Picker("", selection: $viewmodel.discountPercentage) {
                                     ForEach(discountPercentages, id: \.self) {
                                         Text("\($0) %")
-                                        
                                     }
                                 }
                             }

@@ -11,8 +11,6 @@ struct HistoryView: View {
     
     @State private var animationState: AnimationState = .normal
     @State var isPresented = false
-    
-    @EnvironmentObject var persistenceController: PersistenceController
     @StateObject var viewmodel: CalculatorVM
     
     
@@ -60,7 +58,6 @@ struct HistoryView: View {
             }
         } else {
             NavigationView {
-                
                 List {
                     ForEach(viewmodel.calculation, id: \.fullPrice) {
                         CalculationRow(calculation: $0)

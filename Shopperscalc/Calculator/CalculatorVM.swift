@@ -33,14 +33,14 @@ class CalculatorVM: NSObject, ObservableObject, NSFetchedResultsControllerDelega
         self.persistenceController = persistenceController
         
         let calculationRequest: NSFetchRequest<Calculation> = Calculation.fetchRequest()
-        calculationRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Calculation.date, ascending: true)]
+        calculationRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Calculation.fullPrice, ascending: true)]
         calculationController = NSFetchedResultsController(fetchRequest: calculationRequest,
                                                            managedObjectContext: persistenceController.container.viewContext,
                                                            sectionNameKeyPath: nil,
                                                            cacheName:  nil)
         
         let request: NSFetchRequest<ListName> = ListName.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \ListName.date, ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \ListName.listTitle, ascending: true)]
         listNameController = NSFetchedResultsController(fetchRequest: request,
                                                         managedObjectContext: persistenceController.container.viewContext,
                                                         sectionNameKeyPath: nil,

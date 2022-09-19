@@ -193,6 +193,7 @@
 				FD9C1CC3281BB1D2003EA990 /* List */,
 				FD4372F22814583300B7D10D /* Persistence */,
 				FD11EB532819C9FA00B486B1 /* Extensions */,
+				FD8917172808A00F00498E4D /* ViewModifiers */,
 				FD4D9E9027F6ABAD00941EA5 /* Assets.xcassets */,
 				FD4D9E9227F6ABAD00941EA5 /* Preview Content */,
 			);
@@ -262,7 +263,6 @@
 			children = (
 				FDED2B7F27FCB8300049953C /* CalculatorView.swift */,
 				FDED2B8127FCB84B0049953C /* CalculatorVM.swift */,
-				FD8917172808A00F00498E4D /* ViewModifiers */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";

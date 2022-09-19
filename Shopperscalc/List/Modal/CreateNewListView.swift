@@ -10,7 +10,6 @@ import SwiftUI
 struct CreateNewListView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
     @ObservedObject var viewmodel: ListVM
     
     var body: some View {
