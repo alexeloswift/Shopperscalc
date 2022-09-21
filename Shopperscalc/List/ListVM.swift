@@ -10,7 +10,6 @@ import CoreData
 
 class ListVM: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     
-    
     @Published var listName: String = ""
     @Published var isPresented = false
     @Published var listNames = [ListName]()
@@ -50,9 +49,7 @@ class ListVM: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
         listCalculation.newTotal = newTotal
         listCalculation.fullPrice = fullPrice
         listCalculation.discountPercentage = discountPercentage
-        
         persistenceController.save()
-        
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController <NSFetchRequestResult>) {
@@ -60,7 +57,6 @@ class ListVM: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
             listNames = newListNames
         }
     }
-    
     
     func deleteList(at offsets: IndexSet) {
         let allList = listNames

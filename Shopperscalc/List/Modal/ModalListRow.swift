@@ -36,11 +36,9 @@ struct ModalListRow: View {
                 .stroke(.yellow, lineWidth: 0.7)
                 .shadow(color: .yellow, radius: 0.7))
     }
-    
 }
 
 extension ModalListRow {
-    
     class ViewModel: ObservableObject {
         let listName: ListName
         

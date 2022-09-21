@@ -16,7 +16,7 @@ class PersistenceController: ObservableObject {
     // A test configuration for SwiftUI previews
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Calculations")
-
+        
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -37,7 +37,6 @@ class PersistenceController: ObservableObject {
         } catch {
             fatalError("Fatal error creating preview \(error.localizedDescription)")
         }
-        
         return persistenceController
     }()
     
@@ -55,7 +54,6 @@ class PersistenceController: ObservableObject {
             let listName = ListName(context: viewcontext)
             listName.listTitle = "Store \(i)"
             listName.date = Date()
-            
             
             for j in 1...10 {
                 let listCalculation = ListCalculation(context: viewcontext)

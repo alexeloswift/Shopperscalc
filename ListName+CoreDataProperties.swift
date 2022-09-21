@@ -12,8 +12,6 @@ import CoreData
 
 extension ListName {
     
-    
-    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ListName> {
         return NSFetchRequest<ListName>(entityName: "ListName")
     }
@@ -22,7 +20,7 @@ extension ListName {
     @NSManaged public var listTitle: String?
     @NSManaged public var listCalculation: NSSet?
     
-    public var listCalculationsCore: [ListCalculation] {
+    public var listCalculationsContainer: [ListCalculation] {
         listCalculation?.allObjects as? [ListCalculation] ?? []
     }
     

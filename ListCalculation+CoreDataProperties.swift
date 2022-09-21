@@ -55,5 +55,5 @@ extension ListCalculation {
 }
 
 extension ListCalculation : Identifiable {
-    
+
 }

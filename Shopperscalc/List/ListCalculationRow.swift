@@ -10,16 +10,13 @@ import CoreData
 
 struct ListCalculationRow: View {
     
-    @ObservedObject var listCalculation: ListCalculation
     @StateObject var viewmodel: ViewModel
+    @ObservedObject var listCalculation: ListCalculation
     
     init(listCalculation: ListCalculation) {
-        
         self.listCalculation = listCalculation
-        
         let viewmodel = ViewModel(listCalculation: listCalculation)
         _viewmodel = StateObject(wrappedValue: viewmodel)
-        
     }
     
     var body: some View {

@@ -35,7 +35,6 @@ struct CalculationRow: View {
                         Text(calculation.fullPrice ?? "$0.00")
                     }
                     .foregroundColor(Color.red)
-                    
                 }
             }
         }

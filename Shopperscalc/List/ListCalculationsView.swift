@@ -12,10 +12,9 @@ struct ListCalculationsView: View {
     
     @StateObject var viewmodel: ViewModel
     @ObservedObject var listViewModel = ListVM(persistenceController: PersistenceController())
-    @State var isPresented = false
     @ObservedObject var listName: ListName
-    
-    
+    @State var isPresented = false
+
     init(listName: ListName) {
         self.listName = listName
         let viewmodel = ViewModel(persistenceController: PersistenceController(), listName: listName)
@@ -23,34 +22,44 @@ struct ListCalculationsView: View {
     }
     
     var body: some View {
-        if viewmodel.listName.listCalculationsCore.isEmpty {
-            ScrollView {
-                VStack {
-                    Image("shoppingcalcpic")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100, alignment: .center)
-                    Spacer()
-                    Text("You havent saved any calculations to this list yet 🤭")
-                        .multilineTextAlignment(.center)
-                        .padding()
-                    Spacer()
-                }
-            }
+        if viewmodel.listName.listCalculationsContainer.isEmpty {
+            listCalculationContainerEmpty
         } else {
-            List {
-                ForEach(viewmodel.listName.listCalculationsCore, id: \.fullPrice) { item in
-                    ListCalculationRow(listCalculation: item)
-                }
-                .listRowSeparator(.hidden)
-                .padding(10)
-                .cornerRadius(10)
-                .background(
-                    RoundedRectangle(cornerRadius: 10 , style: .continuous)
-                        .stroke(.yellow, lineWidth: 0.7)
-                        .shadow(color: .yellow, radius: 0.7))
-            }
+            listCalculationContainerData
             .navigationTitle(listName.unwrappedListTitle)
+        }
+    }
+    
+//    BODY COMPONENTS
+    
+    private var listCalculationContainerEmpty: some View {
+        ScrollView {
+            VStack {
+                Image("shoppingcalcpic")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100, alignment: .center)
+                Spacer()
+                Text("You havent saved any calculations to this list yet 🤭")
+                    .multilineTextAlignment(.center)
+                    .padding()
+                Spacer()
+            }
+        }
+    }
+    
+    private var listCalculationContainerData: some View {
+        List {
+            ForEach(viewmodel.listName.listCalculationsContainer, id: \.fullPrice) { item in
+                ListCalculationRow(listCalculation: item)
+            }
+            .listRowSeparator(.hidden)
+            .padding(10)
+            .cornerRadius(10)
+            .background(
+                RoundedRectangle(cornerRadius: 10 , style: .continuous)
+                    .stroke(.yellow, lineWidth: 0.7)
+                    .shadow(color: .yellow, radius: 0.7))
         }
     }
 }

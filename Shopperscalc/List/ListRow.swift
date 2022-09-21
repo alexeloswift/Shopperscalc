@@ -47,10 +47,8 @@ struct ListRow: View {
 
 
 extension ListRow {
-    
     class ViewModel: ObservableObject {
         let listName: ListName
-        
         init(listName: ListName) {
             self.listName = listName
         }

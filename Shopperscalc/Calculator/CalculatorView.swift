@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalculatorView: View {
-    @EnvironmentObject var persistenceController: PersistenceController
+    
     @StateObject var listViewmodel: ListVM
     @StateObject var viewmodel: CalculatorVM
     @State private var isPresented = false
@@ -18,11 +18,10 @@ struct CalculatorView: View {
     init(persistenceController: PersistenceController) {
         let viewmodel = CalculatorVM(persistenceController: persistenceController)
         _viewmodel = StateObject(wrappedValue: viewmodel)
-        
         let listViewmodel = ListVM(persistenceController: persistenceController)
         _listViewmodel = StateObject(wrappedValue: listViewmodel)
     }
-
+    
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -43,7 +42,7 @@ struct CalculatorView: View {
             .padding(.top, 50)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                hideKeyboardThingy
+                hideKeyboard
             }
             .toolbar {
                 addToListButton
@@ -53,7 +52,9 @@ struct CalculatorView: View {
             }
         }
     }
-
+    
+//    BODY COMPONENTS
+    
     private var header: some View {
         Image("shoppingcalcpic")
             .resizable()
@@ -72,14 +73,15 @@ struct CalculatorView: View {
         .modifier(NewTotalViewMod())
         .padding()
     }
+    
     private func discount(geo: GeometryProxy) -> some View {
         HStack {
             VStack {
                 Text("Discount")
-
+                
                 Divider()
                     .frame(width: 100)
-
+                
                 Picker("", selection: $viewmodel.discountPercentage) {
                     ForEach(discountPercentages, id: \.self) {
                         Text("\($0) %")
@@ -87,13 +89,13 @@ struct CalculatorView: View {
                 }
             }
             .modifier(SmallViewsMod())
-
+            
             VStack {
                 Text("Full Price")
-
+                
                 Divider()
                     .frame(width: 100)
-
+                
                 TextField(viewmodel.price, text: $viewmodel.price)
                     .modifier(PlaceholderMod(showPlaceHolder: viewmodel.price.isEmpty, placeholder: "$0.00"))
                     .keyboardType(.decimalPad)
@@ -108,7 +110,7 @@ struct CalculatorView: View {
         }
         .frame(width: geo.size.width, height: 100, alignment: .center)
     }
-
+    
     private var clearButton: some View {
         Button("clear", action: viewmodel.reset)
             .font(.system(.body, design: .monospaced))
@@ -120,10 +122,11 @@ struct CalculatorView: View {
                 Capsule()
                     .stroke(Color(UIColor.systemYellow).opacity(0.7), lineWidth: 3))
     }
+    
     private var calcButton: some View {
         Button("calculate") {
             viewmodel.presentCalculation()
-
+            
             !viewmodel.price.isEmpty ? viewmodel.addCalculation(
                 fullPrice: viewmodel.price,
                 newTotal: viewmodel.priceAfterDiscount,
@@ -138,16 +141,18 @@ struct CalculatorView: View {
             Capsule()
                 .stroke(Color(UIColor.systemYellow).opacity(0.7), lineWidth: 3))
     }
+    
     private var buttons: some View {
         HStack {
             clearButton
             calcButton
         }
     }
+    
     private var addToListButton: some View {
         Button("Add to List") {
             isPresented = true
-
+            
             !viewmodel.price.isEmpty ? viewmodel.addListCalculation(
                 fullPrice: viewmodel.price,
                 newTotal: viewmodel.priceAfterDiscount,
@@ -155,7 +160,8 @@ struct CalculatorView: View {
         }
         .tint(Color.yellow)
     }
-    private var hideKeyboardThingy: ToolbarItem<(), some View> {
+    
+    private var hideKeyboard: ToolbarItem<(), some View> {
         ToolbarItem(placement: .keyboard) {
             Button(action: {
                 hideKeyboard()

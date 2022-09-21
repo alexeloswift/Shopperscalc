@@ -11,5 +11,4 @@ import CoreData
 
 @objc(ListName)
 public class ListName: NSManagedObject {
-
 }

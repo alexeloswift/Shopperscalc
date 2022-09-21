@@ -15,7 +15,6 @@ struct CreateNewListView: View {
     var body: some View {
         NavigationView {
             GeometryReader { geo in
-                
                 VStack {
                     TextField("List Name", text: $viewmodel.listName)
                         .padding()
