@@ -27,7 +27,7 @@ struct CalculatorView: View {
             GeometryReader { geo in
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack {
-                        header
+//                        header
                         total
                         discount(geo: geo)
                         Spacer()
@@ -38,15 +38,21 @@ struct CalculatorView: View {
                     }
                 }
             }
-            .navigationTitle("Shopperscalc")
-            .padding(.top, 50)
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationTitle("Shopperscalc")
+            .padding(.top, 25)
+//            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 hideKeyboard
             }
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    sidebar
+                }
+            }
+            .toolbar {
                 addToListButton
             }
+
             .sheet(isPresented: $isPresented) {
                 AddToListView(viewmodel: listViewmodel, calcViewmodel: viewmodel)
             }
@@ -169,6 +175,21 @@ struct CalculatorView: View {
                 Image(systemName: "keyboard.chevron.compact.down").modifier(AccentIcons())})
         }
     }
+    
+    private var sidebar: some View {
+            Button {
+            print("asd")
+            } label: {
+                Image("shoppingcalcpic")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 35, height: 35, alignment: .trailing)
+
+                    
+            }
+    }
+    
+    
 }
 
 struct CalculatorView_Previews: PreviewProvider {
