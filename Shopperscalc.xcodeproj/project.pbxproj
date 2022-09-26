@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FD023FA5281E5F1E00B36ED5 /* ModalListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */; };
+		FD07F14F28E1648900D386F9 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD07F14E28E1648900D386F9 /* SidebarView.swift */; };
 		FD11EB502818F4EC00B486B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */; };
 		FD11EB522819C6F500B486B1 /* BatchDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11EB512819C6F500B486B1 /* BatchDelete.swift */; };
 		FD11EB572819EB9200B486B1 /* PlaceholderMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11EB562819EB9200B486B1 /* PlaceholderMod.swift */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalListRow.swift; sourceTree = "<group>"; };
+		FD07F14E28E1648900D386F9 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD11EB512819C6F500B486B1 /* BatchDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchDelete.swift; sourceTree = "<group>"; };
 		FD11EB562819EB9200B486B1 /* PlaceholderMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderMod.swift; sourceTree = "<group>"; };
@@ -137,6 +139,14 @@
 			path = Modal;
 			sourceTree = "<group>";
 		};
+		FD07F14D28E15AD400D386F9 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				FD07F14E28E1648900D386F9 /* SidebarView.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
 		FD11EB532819C9FA00B486B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +198,7 @@
 				FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */,
 				FD4D9E8C27F6ABAC00941EA5 /* ShopperscalcApp.swift */,
 				FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */,
+				FD07F14D28E15AD400D386F9 /* Sidebar */,
 				FD9C1CC5281BB206003EA990 /* Calculator */,
 				FD9C1CC4281BB1ED003EA990 /* History */,
 				FD9C1CC3281BB1D2003EA990 /* List */,
@@ -423,6 +434,7 @@
 				FD4372F12814580A00B7D10D /* PersistenceController.swift in Sources */,
 				FD9C1CCD281CF684003EA990 /* ListCalculationsView.swift in Sources */,
 				FDB9E90F2835F81F00AECA5C /* ListCalculation+CoreDataProperties.swift in Sources */,
+				FD07F14F28E1648900D386F9 /* SidebarView.swift in Sources */,
 				FDB9E9112835F81F00AECA5C /* ListName+CoreDataProperties.swift in Sources */,
 				FD023FA5281E5F1E00B36ED5 /* ModalListRow.swift in Sources */,
 				FD4D9E8D27F6ABAC00941EA5 /* ShopperscalcApp.swift in Sources */,

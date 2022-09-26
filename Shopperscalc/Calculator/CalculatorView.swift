@@ -12,6 +12,7 @@ struct CalculatorView: View {
     @StateObject var listViewmodel: ListVM
     @StateObject var viewmodel: CalculatorVM
     @State private var isPresented = false
+    @State var isSidebarOpen = false
     
     let discountPercentages = 1..<101
     
@@ -23,39 +24,43 @@ struct CalculatorView: View {
     }
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geo in
-                ScrollView(.vertical, showsIndicators: true) {
-                    VStack {
-//                        header
-                        total
-                        discount(geo: geo)
-                        Spacer()
-                            .padding()
-                        buttons
-                        Spacer()
-                            .padding(.bottom, 100)
+        ZStack {
+            NavigationView {
+                GeometryReader { geo in
+                    ScrollView(.vertical, showsIndicators: true) {
+                        VStack {
+    //                        header
+                            total
+                            discount(geo: geo)
+                            Spacer()
+                                .padding()
+                            buttons
+                            Spacer()
+                                .padding(.bottom, 100)
+                        }
                     }
                 }
-            }
-//            .navigationTitle("Shopperscalc")
-            .padding(.top, 25)
-//            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                hideKeyboard
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    sidebar
+    //            .navigationTitle("Shopperscalc")
+                .padding(.top, 25)
+    //            .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    hideKeyboard
                 }
-            }
-            .toolbar {
-                addToListButton
-            }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        sidebar
+                    }
+                }
+                .toolbar {
+                    addToListButton
+                }
 
-            .sheet(isPresented: $isPresented) {
-                AddToListView(viewmodel: listViewmodel, calcViewmodel: viewmodel)
+                .sheet(isPresented: $isPresented) {
+                    AddToListView(viewmodel: listViewmodel, calcViewmodel: viewmodel)
+                }
+
             }
+            SidebarView(isSidebarVisible: $isSidebarOpen)
         }
     }
     
@@ -178,7 +183,7 @@ struct CalculatorView: View {
     
     private var sidebar: some View {
             Button {
-            print("asd")
+                isSidebarOpen.toggle()
             } label: {
                 Image("shoppingcalcpic")
                     .resizable()
