@@ -139,14 +139,6 @@
 			path = Modal;
 			sourceTree = "<group>";
 		};
-		FD07F14D28E15AD400D386F9 /* Sidebar */ = {
-			isa = PBXGroup;
-			children = (
-				FD07F14E28E1648900D386F9 /* SidebarView.swift */,
-			);
-			path = Sidebar;
-			sourceTree = "<group>";
-		};
 		FD11EB532819C9FA00B486B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,11 +189,8 @@
 			children = (
 				FD11EB4F2818F4EC00B486B1 /* LaunchScreen.storyboard */,
 				FD4D9E8C27F6ABAC00941EA5 /* ShopperscalcApp.swift */,
-				FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */,
-				FD07F14D28E15AD400D386F9 /* Sidebar */,
-				FD9C1CC5281BB206003EA990 /* Calculator */,
-				FD9C1CC4281BB1ED003EA990 /* History */,
-				FD9C1CC3281BB1D2003EA990 /* List */,
+				FD67E07B28F4FABD00181C5E /* Views */,
+				FD67E07C28F4FB2300181C5E /* Viewmodels */,
 				FD4372F22814583300B7D10D /* Persistence */,
 				FD11EB532819C9FA00B486B1 /* Extensions */,
 				FD8917172808A00F00498E4D /* ViewModifiers */,
@@ -236,6 +225,27 @@
 			path = ShopperscalcUITests;
 			sourceTree = "<group>";
 		};
+		FD67E07B28F4FABD00181C5E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD4D9E8E27F6ABAC00941EA5 /* ContentView.swift */,
+				FDED2B7F27FCB8300049953C /* CalculatorView.swift */,
+				FD9C1CC4281BB1ED003EA990 /* History */,
+				FD9C1CC3281BB1D2003EA990 /* List */,
+				FD07F14E28E1648900D386F9 /* SidebarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FD67E07C28F4FB2300181C5E /* Viewmodels */ = {
+			isa = PBXGroup;
+			children = (
+				FDED2B8127FCB84B0049953C /* CalculatorVM.swift */,
+				FD9C1CC8281C7061003EA990 /* ListVM.swift */,
+			);
+			path = Viewmodels;
+			sourceTree = "<group>";
+		};
 		FD8917172808A00F00498E4D /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,9 +260,8 @@
 		FD9C1CC3281BB1D2003EA990 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				FD9C1CCA281C7418003EA990 /* ListRow.swift */,
 				FD9C1CBF281BAE56003EA990 /* ListView.swift */,
-				FD9C1CC8281C7061003EA990 /* ListVM.swift */,
+				FD9C1CCA281C7418003EA990 /* ListRow.swift */,
 				FD9C1CCC281CF684003EA990 /* ListCalculationsView.swift */,
 				FD9C1CCE281DE105003EA990 /* ListCalculationRow.swift */,
 				FD023FA3281E59E000B36ED5 /* Modal */,
@@ -267,15 +276,6 @@
 				FD4372F428145C4800B7D10D /* CalculationRow.swift */,
 			);
 			path = History;
-			sourceTree = "<group>";
-		};
-		FD9C1CC5281BB206003EA990 /* Calculator */ = {
-			isa = PBXGroup;
-			children = (
-				FDED2B7F27FCB8300049953C /* CalculatorView.swift */,
-				FDED2B8127FCB84B0049953C /* CalculatorVM.swift */,
-			);
-			path = Calculator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

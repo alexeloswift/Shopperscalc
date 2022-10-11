@@ -23,6 +23,8 @@ struct CalculatorView: View {
         _listViewmodel = StateObject(wrappedValue: listViewmodel)
     }
     
+//    MARK: - BODY QUICK VIEW
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -64,8 +66,8 @@ struct CalculatorView: View {
         }
     }
     
-//    BODY COMPONENTS
-    
+    //    MARK: - BODY COMPONENTS
+
     private var header: some View {
         Image("shoppingcalcpic")
             .resizable()

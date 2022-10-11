@@ -14,6 +14,8 @@ struct AddToListView: View {
     @State private var animationState: AnimationState = .normal
     @Environment(\.presentationMode) var presentationMode
     
+    //    MARK: - BODY QUICK VIEW
+    
     var body: some View {
         NavigationView {
             if viewmodel.listNames.isEmpty {
@@ -51,8 +53,8 @@ struct AddToListView: View {
                 }
             }
     
-//    BODY COMPONENTS
-    
+    //    MARK: - BODY COMPONENTS
+
     private var listDataEmpty: some View {
         ZStack {
             Color.gray
@@ -103,8 +105,8 @@ struct AddToListView: View {
             }
         }
     
-//    ANIMATION
-    
+    //    MARK: - ANIMATION
+
     func calculate() -> Double {
         switch animationState{
         case .normal:
