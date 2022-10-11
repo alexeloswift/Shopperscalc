@@ -236,16 +236,6 @@
 			path = Viewmodels;
 			sourceTree = "<group>";
 		};
-		FD67E07D28F4FC1900181C5E /* ModalViews */ = {
-			isa = PBXGroup;
-			children = (
-				FD37E2CD2833439300FF1A51 /* CreateNewListView.swift */,
-				FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */,
-				FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */,
-			);
-			path = ModalViews;
-			sourceTree = "<group>";
-		};
 		FD67E07E28F4FC5100181C5E /* ListViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +243,7 @@
 				FD9C1CCA281C7418003EA990 /* ListRow.swift */,
 				FD9C1CCC281CF684003EA990 /* ListCalculationsView.swift */,
 				FD9C1CCE281DE105003EA990 /* ListCalculationRow.swift */,
-				FD67E07D28F4FC1900181C5E /* ModalViews */,
+				FD67E08128F4FDA800181C5E /* ListModalViews */,
 			);
 			path = ListViews;
 			sourceTree = "<group>";
@@ -265,6 +255,16 @@
 				FD4372F428145C4800B7D10D /* CalculationRow.swift */,
 			);
 			path = HistoryViews;
+			sourceTree = "<group>";
+		};
+		FD67E08128F4FDA800181C5E /* ListModalViews */ = {
+			isa = PBXGroup;
+			children = (
+				FD37E2CD2833439300FF1A51 /* CreateNewListView.swift */,
+				FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */,
+				FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */,
+			);
+			path = ListModalViews;
 			sourceTree = "<group>";
 		};
 		FD8917172808A00F00498E4D /* ViewModifiers */ = {

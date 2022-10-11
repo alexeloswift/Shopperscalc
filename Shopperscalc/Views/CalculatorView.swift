@@ -31,7 +31,6 @@ struct CalculatorView: View {
                 GeometryReader { geo in
                     ScrollView(.vertical, showsIndicators: true) {
                         VStack {
-    //                        header
                             total
                             discount(geo: geo)
                             Spacer()
@@ -42,9 +41,7 @@ struct CalculatorView: View {
                         }
                     }
                 }
-    //            .navigationTitle("Shopperscalc")
                 .padding(.top, 25)
-    //            .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     hideKeyboard
                 }
