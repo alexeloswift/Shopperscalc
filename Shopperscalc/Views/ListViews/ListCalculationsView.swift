@@ -15,7 +15,7 @@ struct ListCalculationsView: View {
     @ObservedObject var listName: ListName
     @State var isPresented = false
     
-    //    MARK: - BODY QUICK VIEW
+//    MARK: - BODY QUICK VIEW
 
     init(listName: ListName) {
         self.listName = listName
@@ -32,7 +32,7 @@ struct ListCalculationsView: View {
         }
     }
     
-    //    MARK: - BODY COMPONENTS
+//    MARK: - BODY COMPONENTS
 
     private var listCalculationContainerEmpty: some View {
         ScrollView {

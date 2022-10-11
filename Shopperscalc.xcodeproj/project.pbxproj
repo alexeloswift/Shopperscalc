@@ -260,8 +260,8 @@
 		FD67E08128F4FDA800181C5E /* ListModalViews */ = {
 			isa = PBXGroup;
 			children = (
-				FD37E2CD2833439300FF1A51 /* CreateNewListView.swift */,
 				FD9C1CC1281BB1C1003EA990 /* AddToListView.swift */,
+				FD37E2CD2833439300FF1A51 /* CreateNewListView.swift */,
 				FD023FA4281E5F1E00B36ED5 /* ModalListRow.swift */,
 			);
 			path = ListModalViews;

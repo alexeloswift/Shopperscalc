@@ -18,7 +18,7 @@ struct HistoryView: View {
         _viewmodel = StateObject(wrappedValue: viewmodel)
     }
     
-    //    MARK: - BODY QUICK VIEW
+//    MARK: - BODY QUICK VIEW
     
     var body: some View {
         if viewmodel.calculation.isEmpty {
@@ -45,7 +45,7 @@ struct HistoryView: View {
         }
     }
     
-    //    MARK: - BODY COMPONENTS
+//    MARK: - BODY COMPONENTS
 
     private var historyDataEmpty: some View {
         ZStack {
@@ -104,7 +104,7 @@ struct HistoryView: View {
         }
     }
     
-    //    MARK: - ANIMATION
+//    MARK: - ANIMATION
 
     func calculate() -> Double {
         switch animationState{

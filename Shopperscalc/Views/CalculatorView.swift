@@ -63,7 +63,7 @@ struct CalculatorView: View {
         }
     }
     
-    //    MARK: - BODY COMPONENTS
+//    MARK: - BODY COMPONENTS
 
     private var header: some View {
         Image("shoppingcalcpic")

@@ -17,7 +17,7 @@ struct ListView: View {
         _viewmodel = StateObject(wrappedValue: viewmodel)
     }
     
-    //    MARK: - BODY QUICK VIEW
+//    MARK: - BODY QUICK VIEW
     
     var body: some View {
         NavigationView {
@@ -40,7 +40,7 @@ struct ListView: View {
         }
     }
     
-    //    MARK: - BODY COMPONENTS
+//    MARK: - BODY COMPONENTS
 
     private var listDataEmpty: some View {
         HStack {
